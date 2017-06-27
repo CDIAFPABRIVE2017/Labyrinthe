@@ -1,0 +1,5 @@
+C:\Users\CDI\Source\Repos\Labyrinthe\Labyrinthe\bin\Debug\Labyrinthe.dll
+C:\Users\CDI\Source\Repos\Labyrinthe\Labyrinthe\bin\Debug\Labyrinthe.pdb
+C:\Users\CDI\Source\Repos\Labyrinthe\Labyrinthe\obj\Debug\Labyrinthe.csprojResolveAssemblyReference.cache
+C:\Users\CDI\Source\Repos\Labyrinthe\Labyrinthe\obj\Debug\Labyrinthe.dll
+C:\Users\CDI\Source\Repos\Labyrinthe\Labyrinthe\obj\Debug\Labyrinthe.pdb

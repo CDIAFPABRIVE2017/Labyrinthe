@@ -17,8 +17,6 @@ namespace Labyrinthe
 
     internal class Loot
     {
-        Effet _effet;
-        Point _emplacement;
-        string _nom;
+
     }
 }

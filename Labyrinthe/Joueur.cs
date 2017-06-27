@@ -11,9 +11,72 @@ namespace Labyrinthe
     {
         Point _position;
         int _vision;
-        decimal _vit, _force;
+        decimal _vitesse, _force;
         Inventaire _inventaire;
 
+        public Point Position
+        {
+            get
+            {
+                return _position;
+            }
 
+            set
+            {
+                _position = value;
+            }
+        }
+
+        public int Vision
+        {
+            get
+            {
+                return _vision;
+            }
+
+            set
+            {
+                _vision = value;
+            }
+        }
+
+        public decimal Vitesse
+        {
+            get
+            {
+                return _vitesse;
+            }
+
+            set
+            {
+                _vitesse = value;
+            }
+        }
+
+        public decimal Force
+        {
+            get
+            {
+                return _force;
+            }
+
+            set
+            {
+                _force = value;
+            }
+        }
+
+        internal Inventaire Inventaire
+        {
+            get
+            {
+                return _inventaire;
+            }
+
+            set
+            {
+                _inventaire = value;
+            }
+        }
     }
 }
