@@ -7,6 +7,13 @@ using System.Windows;
 
 namespace Labyrinthe
 {
+    enum Direction
+    {
+        HAUT = 0,
+        DROITE = 1,
+        BAS = 2,
+        GAUCHE = 3
+    }
     public class Joueur
     {
         Point _position;
@@ -14,21 +21,16 @@ namespace Labyrinthe
         decimal _vitesse, _force;
         Inventaire _inventaire;
 
-        enum Direction
-        {
-            HAUT = 0,
-            DROITE = 1,
-            BAS = 2,
-            GAUCHE = 3
-        }
 
-        void Deplacmeent()
+
+        void Deplacement(Direction d)
         {
-            Direction d = Direction.DROITE;
             if (ChangementCase(d))
             {
                 // Modif position
-                // Interroger server
+                // Notifier serveur du déplacement
+                // Le serveur répond avec l'éventuel objet ou rencontre, ou vide...
+                // On réagit en conséquence.
             }
         }
 
@@ -37,27 +39,7 @@ namespace Labyrinthe
         /// </summary>
         /// <param name="d">Direction</param>
         /// <returns></returns>
-        bool ChangementCase(Direction d)
-        {
-            switch (d)
-            {
-                case Direction.HAUT:
-                    // Aller en hauf
-                    // Appeler le Laby local pour les murs
-                    break;
-                case Direction.DROITE:
-                    // Aller à droite
-                    break;
-                case Direction.BAS:
-                    // Aller en bas
-                    break;
-                case Direction.GAUCHE:
-                    // Aller à gauche
-                    break;
-            }
-            return true;
-        }
-
+        
         public Point Position
         {
             get { return _position; }

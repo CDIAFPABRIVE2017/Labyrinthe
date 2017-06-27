@@ -46,6 +46,7 @@
     <Compile Include="Joueur.cs" />
     <Compile Include="Loot.cs" />
     <Compile Include="MyLabyrinthe.cs" />
+    <Compile Include="Partie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
