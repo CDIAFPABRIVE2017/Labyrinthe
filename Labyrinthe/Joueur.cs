@@ -14,6 +14,7 @@ namespace Labyrinthe
         BAS = 2,
         GAUCHE = 3
     }
+    
     public class Joueur
     {
         Point _position;
@@ -21,25 +22,26 @@ namespace Labyrinthe
         decimal _vitesse, _force;
         Inventaire _inventaire;
 
-
-
-        void Deplacement(Direction d)
-        {
-            if (ChangementCase(d))
-            {
-                // Modif position
-                // Notifier serveur du déplacement
-                // Le serveur répond avec l'éventuel objet ou rencontre, ou vide...
-                // On réagit en conséquence.
-            }
-        }
+        Loot metre = new Loot_Etre();
+        
+       
+        /*     void Deplacement(Direction d)
+             {
+                 if (ChangementCase(d))
+                 {
+                     // Modif position
+                     // Notifier serveur du déplacement
+                     // Le serveur répond avec l'éventuel objet ou rencontre, ou vide...
+                     // On réagit en conséquence.
+                 }
+             } */
 
         /// <summary>
         /// Retourne si le mouvement peut être fait
         /// </summary>
         /// <param name="d">Direction</param>
         /// <returns></returns>
-        
+
         public Point Position
         {
             get { return _position; }
@@ -69,5 +71,6 @@ namespace Labyrinthe
             get { return _inventaire; }
             set { _inventaire = value;}
         }
+
     }
 }
