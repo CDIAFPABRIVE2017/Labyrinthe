@@ -25,7 +25,7 @@ namespace Labyrinthe
         Loot metre = new Loot_Etre();
         
        
-        /*     void Deplacement(Direction d)
+             void Deplacement(Direction d)
              {
                  if (ChangementCase(d))
                  {
@@ -34,7 +34,7 @@ namespace Labyrinthe
                      // Le serveur répond avec l'éventuel objet ou rencontre, ou vide...
                      // On réagit en conséquence.
                  }
-             } */
+             } 
 
         /// <summary>
         /// Retourne si le mouvement peut être fait
