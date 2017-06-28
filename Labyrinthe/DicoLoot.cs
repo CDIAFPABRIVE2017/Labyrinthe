@@ -3,7 +3,7 @@ using System.Windows;
 
 namespace Labyrinthe
 {
-    internal class DicoLoot : Dictionary<Point,Loot>
+    public class DicoLoot : Dictionary<Point,Loot>
     {
         //Ajouter, Supprimer...
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Labyrinthe
 {
-    class MyLabyrinthe
+    public class MyLabyrinthe
     {
         bool[,] _laby; //Le labyrinthe proprement dit. bool ou int ?
         DicoLoot _liste;
@@ -24,7 +24,7 @@ namespace Labyrinthe
             }
         }
 
-        internal DicoLoot Liste
+        public DicoLoot Liste
         {
             get
             {
@@ -36,5 +36,7 @@ namespace Labyrinthe
                 _liste = value;
             }
         }
+
+        public MyLabyrinthe() { }
     }
 }

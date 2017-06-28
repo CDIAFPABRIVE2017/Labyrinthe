@@ -15,7 +15,7 @@ namespace Labyrinthe
         Pic = 8,
     }
 
-    internal class Loot
+    public class Loot
     {
 
     }
