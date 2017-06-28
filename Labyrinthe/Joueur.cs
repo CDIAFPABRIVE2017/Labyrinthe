@@ -29,6 +29,7 @@ namespace Labyrinthe
             {
                 // Modif position
                 // Interroger server
+                // liste = Server.input(_position) ?
             }
         }
 
