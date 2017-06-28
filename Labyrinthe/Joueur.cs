@@ -7,6 +7,13 @@ using System.Windows;
 
 namespace Labyrinthe
 {
+    public enum Direction
+    {
+        HAUT = 0,
+        DROITE = 1,
+        BAS = 2,
+        GAUCHE = 3
+    }
     public class Joueur
     {
         Point _position;
@@ -14,22 +21,27 @@ namespace Labyrinthe
         decimal _vitesse, _force;
         Inventaire _inventaire;
 
-        enum Direction
-        {
-            HAUT = 0,
-            DROITE = 1,
-            BAS = 2,
-            GAUCHE = 3
-        }
 
-        void Deplacmeent()
+
+        public void Deplacement(Direction d)
         {
-            Direction d = Direction.DROITE;
-            if (ChangementCase(d))
+            if (!isMur(d))
             {
-                // Modif position
-                // Interroger server
-                // liste = Server.input(_position) ?
+                switch (d)
+                {
+                    case Direction.HAUT:
+                        Position = new Point(Position.X, Position.Y + 1);
+                        break;
+                    case Direction.DROITE:
+                        Position = new Point(Position.X + 1, Position.Y);
+                        break;
+                    case Direction.BAS:
+                        Position = new Point(Position.X, Position.Y - 1);
+                        break;
+                    case Direction.GAUCHE:
+                        Position = new Point(Position.X - 1, Position.Y);
+                        break;
+                }
             }
         }
 
@@ -38,7 +50,7 @@ namespace Labyrinthe
         /// </summary>
         /// <param name="d">Direction</param>
         /// <returns></returns>
-        bool ChangementCase(Direction d)
+        public bool isMur(Direction d)
         {
             switch (d)
             {
