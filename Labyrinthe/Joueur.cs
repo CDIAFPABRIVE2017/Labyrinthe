@@ -7,13 +7,15 @@ using System.Windows;
 
 namespace Labyrinthe
 {
-    public enum Direction
+
+    enum Direction
     {
         HAUT = 0,
         DROITE = 1,
         BAS = 2,
         GAUCHE = 3
     }
+ 
     public class Joueur
     {
         Point _position;
@@ -22,54 +24,26 @@ namespace Labyrinthe
         Inventaire _inventaire;
 
 
-
-        public void Deplacement(Direction d)
-        {
-            if (!isMur(d))
-            {
-                switch (d)
-                {
-                    case Direction.HAUT:
-                        Position = new Point(Position.X, Position.Y + 1);
-                        break;
-                    case Direction.DROITE:
-                        Position = new Point(Position.X + 1, Position.Y);
-                        break;
-                    case Direction.BAS:
-                        Position = new Point(Position.X, Position.Y - 1);
-                        break;
-                    case Direction.GAUCHE:
-                        Position = new Point(Position.X - 1, Position.Y);
-                        break;
-                }
-            }
-        }
+        Loot metre = new Loot_Etre();
+        
+       
+             void Deplacement(Direction d)
+             {
+                 if (ChangementCase(d))
+                 {
+                     // Modif position
+                     // Notifier serveur du déplacement
+                     // Le serveur répond avec l'éventuel objet ou rencontre, ou vide...
+                     // On réagit en conséquence.
+                 }
+             } 
 
         /// <summary>
         /// Retourne si le mouvement peut être fait
         /// </summary>
         /// <param name="d">Direction</param>
         /// <returns></returns>
-        public bool isMur(Direction d)
-        {
-            switch (d)
-            {
-                case Direction.HAUT:
-                    // Aller en hauf
-                    // Appeler le Laby local pour les murs
-                    break;
-                case Direction.DROITE:
-                    // Aller à droite
-                    break;
-                case Direction.BAS:
-                    // Aller en bas
-                    break;
-                case Direction.GAUCHE:
-                    // Aller à gauche
-                    break;
-            }
-            return true;
-        }
+
 
         public Point Position
         {
@@ -100,5 +74,6 @@ namespace Labyrinthe
             get { return _inventaire; }
             set { _inventaire = value;}
         }
+
     }
 }
