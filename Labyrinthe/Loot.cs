@@ -17,6 +17,17 @@ namespace Labyrinthe
 
     public class Loot
     {
+        public string name;
+        public static bool IsNull(Loot loot)
+        {
+            return (loot == null);
+        }
 
+        public Loot(string name)
+        {
+            this.name = name;
+        }
+
+        public Loot(Loot loot) : this(loot.name) { }
     }
 }

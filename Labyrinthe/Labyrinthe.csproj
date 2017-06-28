@@ -41,7 +41,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChangementCaseEventArgs.cs" />
     <Compile Include="DicoLoot.cs" />
     <Compile Include="Inventaire.cs" />
     <Compile Include="Joueur.cs" />

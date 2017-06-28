@@ -19,7 +19,8 @@ namespace Labyrinthe
         Point _position;
         int _vision;
         decimal _vitesse, _force;
-        Inventaire _inventaire;
+        Inventaire _inventaire = new Inventaire();
+        MyLabyrinthe _laby = Partie.ConstructionLabyrinthe();
 
 
 
@@ -30,13 +31,13 @@ namespace Labyrinthe
                 switch (d)
                 {
                     case Direction.HAUT:
-                        Position = new Point(Position.X, Position.Y + 1);
+                        Position = new Point(Position.X, Position.Y - 1);
                         break;
                     case Direction.DROITE:
                         Position = new Point(Position.X + 1, Position.Y);
                         break;
                     case Direction.BAS:
-                        Position = new Point(Position.X, Position.Y - 1);
+                        Position = new Point(Position.X, Position.Y + 1);
                         break;
                     case Direction.GAUCHE:
                         Position = new Point(Position.X - 1, Position.Y);
@@ -55,20 +56,27 @@ namespace Labyrinthe
             switch (d)
             {
                 case Direction.HAUT:
-                    // Aller en hauf
-                    // Appeler le Laby local pour les murs
+                    if (Position.Y == 0)
+                        return true;
+                    else return (Laby.Laby[(int)Position.X, (int)Position.Y - 1]);
                     break;
                 case Direction.DROITE:
-                    // Aller à droite
+                    if (Position.X == Laby.Laby.GetLength(0)-1)
+                        return true;
+                    else return (Laby.Laby[(int)Position.X + 1, (int)Position.Y]);
                     break;
                 case Direction.BAS:
-                    // Aller en bas
+                    if (Position.Y == Laby.Laby.GetLength(1)-1)
+                        return true;
+                    else return (Laby.Laby[(int)Position.X, (int)Position.Y + 1]);
                     break;
                 case Direction.GAUCHE:
-                    // Aller à gauche
+                    if (Position.X == 0)
+                        return true;
+                    else return (Laby.Laby[(int)Position.X - 1, (int)Position.Y]);
                     break;
             }
-            return true;
+            return false;
         }
 
         public Point Position
@@ -95,10 +103,23 @@ namespace Labyrinthe
             set { _force = value; }
         }
 
-        internal Inventaire Inventaire
+        public Inventaire Inventaire
         {
             get { return _inventaire; }
             set { _inventaire = value;}
+        }
+
+        public MyLabyrinthe Laby
+        {
+            get
+            {
+                return _laby;
+            }
+
+            set
+            {
+                _laby = value;
+            }
         }
     }
 }

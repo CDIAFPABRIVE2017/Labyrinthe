@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Labyrinthe;
 
 namespace MainTemp
@@ -11,16 +12,26 @@ namespace MainTemp
     {
         public static Partie partie = new Partie();
         public static Joueur joueur = new Joueur();
-        public static event EventHandler<ChangementCaseEventArgs> changementCase;
 
         static void Main(string[] args)
         {
             Loot loot;
             partie.Lancement();
+
+            joueur.Position = new Point(1, 1);
             while (true)
             {
                 ChangeCaseListener();
-                loot = partie.IsObjet(joueur.Position);
+                loot = partie.TryRamassageObjet(joueur.Position);
+                AffichageConsole.AffichageLaby(partie.laby, joueur);
+                if (!Loot.IsNull(loot))
+                {
+                    joueur.Inventaire.Add(loot);
+                    Console.WriteLine("Loooot !");
+                    foreach (Loot item in joueur.Inventaire)
+                        Console.WriteLine(item.name);
+                }
+
             }
 
 
@@ -29,7 +40,9 @@ namespace MainTemp
 
         public static void ChangeCaseListener()
         {
-            switch (Console.ReadKey().Key)
+            ConsoleKey saisie = Console.ReadKey().Key;
+            Console.WriteLine(saisie.ToString());
+            switch (saisie)
             {
                 case ConsoleKey.UpArrow:
                     joueur.Deplacement(Direction.HAUT);

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Labyrinthe", "Labyrinthe\La
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainTemp", "MainTemp\MainTemp.csproj", "{5559FA69-6BA4-4DB7-82BB-44E4BC5933AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEST", "TEST\TEST.csproj", "{A00C4230-DEB0-4805-98C9-61159D9DC97B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{5559FA69-6BA4-4DB7-82BB-44E4BC5933AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5559FA69-6BA4-4DB7-82BB-44E4BC5933AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5559FA69-6BA4-4DB7-82BB-44E4BC5933AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A00C4230-DEB0-4805-98C9-61159D9DC97B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A00C4230-DEB0-4805-98C9-61159D9DC97B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A00C4230-DEB0-4805-98C9-61159D9DC97B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A00C4230-DEB0-4805-98C9-61159D9DC97B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

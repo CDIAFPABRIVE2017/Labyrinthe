@@ -10,7 +10,7 @@ namespace Labyrinthe
     public class Partie
     {
         bool _isClient;
-        MyLabyrinthe laby;
+        public MyLabyrinthe laby;
 
         public bool IsClient
         {
@@ -28,7 +28,7 @@ namespace Labyrinthe
         public void Lancement()
         {
             // Broadcast "serveur ?"
-            //attend la réponse 1 sec
+            //attend la réponse true sec
 
             if (/*on reçoit une réponse*/false)
                 IsClient = true;
@@ -38,16 +38,29 @@ namespace Labyrinthe
             laby = ConstructionLabyrinthe();
         }
 
-        public MyLabyrinthe ConstructionLabyrinthe()
+        public static MyLabyrinthe ConstructionLabyrinthe()
         {
-            if (IsClient)
-                return null;
-            //On interroge le serveur et on récupère son labyrinthe
-            else
-                return new MyLabyrinthe();
+            /*  if (IsClient)
+                  return null;
+              //On interroge le serveur et on récupère son labyrinthe
+              else
+                  return new MyLabyrinthe();
+              */
+
+
+
+              ///Ca c'est juste pour le test.
+            MyLabyrinthe laby = new MyLabyrinthe();
+            laby.Laby = new bool[,] { { true, false, false, false, false, false, false, false, true, false }, { true, false, true, false, true, false, true, false, true, false }, { false, false, true, false, true, false, true, false, true, false }, { true, false, true, false, true, false, true, false, true, false }, { true, false, true, false, false, false, true, false, true, false }, { true, false, true, true, true, true, true, false, true, false }, { true, false, true, false, false, false, false, false, false, false }, { true, true, true, true, true, true, true, true, true, false }, { true, true, true, true, true, true, true, true, true, false }, { true, true, true, true, true, true, true, true, true, false } };
+            laby.Liste = new DicoLoot();
+            laby.Liste.Add(new Point(1, 3), new Labyrinthe.Loot("Un gros bidule"));
+            laby.Liste.Add(new Point(4, 4), new Labyrinthe.Loot("Une potion de vitesse"));
+            laby.Liste.Add(new Point(6, 6), new Labyrinthe.Loot("une GROSSE EPEE"));
+
+            return laby;
         }
 
-        public Loot IsObjet(Point p)
+        public Loot TryRamassageObjet(Point p)
         {
             if (IsClient)
                 //Interrogation serveur et récupération du LOOT
@@ -58,6 +71,7 @@ namespace Labyrinthe
                 if (laby.Liste.TryGetValue(p, out loot))
                 {
                     laby.Liste.Remove(p);
+                    
                     //Prévenir les autres de remove cet objet !
                     return loot;
                 }
