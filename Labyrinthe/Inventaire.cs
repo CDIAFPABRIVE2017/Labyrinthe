@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Labyrinthe
 {
-    internal class Inventaire: List<Loot>
+     public class Inventaire: List<Loot>
     {
         // A implémenter : Ajouter/Retirer
     }
