@@ -63,9 +63,26 @@ namespace Labyrinthe
 
             MyLabyrinthe laby = new Labyrinthe.MyLabyrinthe();
             int[,] tempMaze = new int[hauteur, largeur];
+            laby.Laby = new bool[hauteur, largeur];
             Maze.InitialiseTableau(tempMaze, hauteur, largeur);
             Maze.GenereCheminPrimaire(tempMaze, hauteur, largeur, 1, 0);
-            for (int i = 0;i<)
+            for (int j = 0;j<largeur;j++)
+                for (int i = 0;i<hauteur;i++)
+                {
+                    switch (tempMaze[j,i])
+                    {
+                        case 0:
+                            laby.ModifierLabyrinthe(i,j,false);
+                            break;
+                        case 1:
+                            laby.ModifierLabyrinthe(i, j, true);
+                            break;
+                        default:
+                            laby.ModifierLabyrinthe(i, j, false);
+                            laby.Liste.Add(new Point(i, j), new Labyrinthe.Loot("random"));
+                            break;
+                    }
+                }
 
 
             return laby;

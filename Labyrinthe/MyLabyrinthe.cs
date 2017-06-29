@@ -11,6 +11,10 @@ namespace Labyrinthe
         bool[,] _laby; //Le labyrinthe proprement dit. bool ou int ?
         DicoLoot _liste;
 
+        public void ModifierLabyrinthe(int i, int j, bool val)
+        {
+            _laby[i, j] = val;
+        }
         public bool[,] Laby
         {
             get
