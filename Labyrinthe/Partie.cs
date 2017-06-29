@@ -40,6 +40,7 @@ namespace Labyrinthe
                 IsClient = false;*/
 
             laby = ConstructionLabyrinthe();
+            laby.NouveauxObjets();
         }
 
         public static MyLabyrinthe ConstructionLabyrinthe()

@@ -24,7 +24,29 @@ namespace MainTemp
                     {
                            laby.Liste.TryGetValue(new Point(i, j), out loot);
                            if (!Loot.IsNull(loot))
-                               Console.Write("LL");
+                            {
+                            switch (loot.name)
+                            {
+                                case "Pilule de force":
+                                    Console.Write("FO");
+                                    break;
+                                case "Pilule de vision":
+                                    Console.Write("VI");
+                                    break;
+                                case "Carte":
+                                    Console.Write("CA");
+                                    break;
+                                case "random":
+                                    Console.Write("!!");
+                                    break;
+                                case "Clé":
+                                    Console.Write("KY");
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+
                            else if (laby.Tableau[i, j])
                                Console.Write("██");
                            else

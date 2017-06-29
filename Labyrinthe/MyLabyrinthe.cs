@@ -67,6 +67,40 @@ namespace Labyrinthe
                 }
         }
 
+        public void NouveauxObjets()
+        {
+            int nbPilulesVision = Properties.Settings.Default.nbPilulesVision;
+            int nbClés = Properties.Settings.Default.nbClés;
+            int nbPilulesForce = Properties.Settings.Default.nbPilulesForce;
+            int nbCartes = Properties.Settings.Default.nbCartes;
+
+            for (int i = 0; i < nbPilulesVision; i++)
+                Liste.Add(CaseVide(), new Loot("Pilule de vision"));
+            for (int i = 0; i < nbClés; i++)
+                Liste.Add(CaseVide(), new Loot("Clé"));
+            for (int i = 0; i < nbPilulesForce; i++)
+                Liste.Add(CaseVide(), new Loot("Pilule de force"));
+            for (int i = 0; i < nbCartes; i++)
+                Liste.Add(CaseVide(), new Loot("Carte"));
+        }
+
+        public Point CaseVide()
+        {
+            Random rnd = new Random();
+            int x, y;
+            Loot test;
+
+            do
+            {
+                x = rnd.Next(Tableau.GetLength(0));
+                y = rnd.Next(Tableau.GetLength(1));
+            }
+            while ((Tableau[x, y]) || (Liste.TryGetValue(new Point(x, y), out test)));
+
+            return (new Point(x, y));
+
+        }
+
         public MyLabyrinthe() { _liste = new DicoLoot(); }
     }
 }
