@@ -22,6 +22,12 @@ namespace Labyrinthe
         Inventaire _inventaire = new Inventaire();
         MyLabyrinthe _tableau = Partie.ConstructionLabyrinthe();
 
+        MyLabyrinthe carteLaby;
+
+       // _tableau.Tableau.GetLength(0), _tableau.Tableau.GetLength(1)
+
+
+
 
         public void Deplacement(Direction d)
         {
@@ -42,6 +48,7 @@ namespace Labyrinthe
                         Position = new Point(Position.X - 1, Position.Y);
                         break;
                 }
+                ModificationCarte(Position);
             }
         }
 
@@ -115,6 +122,18 @@ namespace Labyrinthe
             {
                 _tableau = value;
             }
+        }
+        public void ModificationCarte(Point position)
+        {
+            carteLaby.ModifierLabyrinthe((int)position.X, (int)position.Y, true);            
+        }
+
+        public void InitialisationCarte()
+        {
+            carteLaby = new MyLabyrinthe();
+                //new MyLabyrinthe [_tableau.Tableau.GetLength(0), _tableau.Tableau.GetLength(1)];
+            //carte.Tableau;
+            carteLaby.Tableau = new bool[_tableau.Tableau.GetLength(0), _tableau.Tableau.GetLength(1)];
         }
     }
 }
