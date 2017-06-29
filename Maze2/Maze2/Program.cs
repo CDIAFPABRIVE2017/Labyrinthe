@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace MazeGenerator
 {
-    class Program
+    public class Maze
     {
-        static void Main(string[] args)
+ /*       static void Main(string[] args)
         {
             FenPrincipale();
         }
-
-        private static void FenPrincipale()
+*/
+        public static void FenPrincipale()
         {
             int Hauteur = 61;
             int Largeur = 61;
@@ -40,7 +40,7 @@ namespace MazeGenerator
 
         }
 
-        private static void AffichageTableau(int[,] Maze, int Hauteur, int Largeur)
+        public static void AffichageTableau(int[,] Maze, int Hauteur, int Largeur)
         {
 
             for (int H = 0; H < Hauteur; H++)
@@ -71,7 +71,7 @@ namespace MazeGenerator
 
 
         }
-        private static void InitialiseTableau(int[,] Maze, int Hauteur, int Largeur)
+        public static void InitialiseTableau(int[,] Maze, int Hauteur, int Largeur)
         {
 
             // Initialisation de la liste 
@@ -99,7 +99,7 @@ namespace MazeGenerator
             }
         }
 
-        private static void GenereCheminPrimaire(int[,] Maze, int Hauteur, int Largeur, int DirHorizont, int DirVertical)
+        public static void GenereCheminPrimaire(int[,] Maze, int Hauteur, int Largeur, int DirHorizont, int DirVertical)
         {
 
 

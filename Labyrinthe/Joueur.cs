@@ -23,7 +23,6 @@ namespace Labyrinthe
         MyLabyrinthe _laby = Partie.ConstructionLabyrinthe();
 
 
-
         public void Deplacement(Direction d)
         {
             if (!isMur(d))
