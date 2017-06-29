@@ -14,9 +14,9 @@ namespace MainTemp
         {
             Loot loot;
             Console.Clear();
-            for (int j = 0; j<laby.Laby.GetLength(0); j++)
+            for (int j = 0; j<laby.Tableau.GetLength(0); j++)
             {
-                for(int i = 0; i <laby.Laby.GetLength(1); i++)
+                for(int i = 0; i <laby.Tableau.GetLength(1); i++)
                 {
                     if (joueur.Position == new Point(i, j))
                         Console.Write("X");
@@ -25,7 +25,7 @@ namespace MainTemp
                         laby.Liste.TryGetValue(new Point(i, j), out loot);
                         if (!Loot.IsNull(loot))
                             Console.Write("L");
-                        else if (laby.Laby[i, j])
+                        else if (laby.Tableau[i, j])
                             Console.Write("█");
                         else
                             Console.Write(" ");

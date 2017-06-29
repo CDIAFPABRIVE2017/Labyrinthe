@@ -4,15 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MazeGenerator
+namespace MazeDll
 {
-    public class Program
+    public class Maze
     {
-       static void Main(string[] args)
-        {
-            FenPrincipale();
-        }
-
         public static void FenPrincipale()
         {
             int Hauteur = 61;
@@ -303,10 +298,10 @@ namespace MazeGenerator
             H = Hauteur / 2;
             L = Largeur / 2;
 
-            for (int Y = H - 1; Y < H +2; Y++)
+            for (int Y = H - 1; Y < H + 2; Y++)
             {
 
-                for (int X = L - 1; X < L +2; X++)
+                for (int X = L - 1; X < L + 2; X++)
                 {
 
                     Maze[Y, X] = 0;
@@ -321,4 +316,3 @@ namespace MazeGenerator
         }
     }
 }
-
