@@ -26,12 +26,22 @@ namespace Labyrinthe
 
     public class Loot
 	{
+        string name;
+
 
 		internal static LootConstantes constantesLoot = new LootConstantes();
-	   
-		
 
-	}
+
+        public static bool IsNull(Loot loot)
+        {
+            return (loot == null);
+        }
+
+        public Loot() { }
+        public Loot(string nom):this() { name = nom; }
+    }
+
+    
    /* public Loot ChoixLoot()
 	{
 		Effet typeLoot = new Effet();
