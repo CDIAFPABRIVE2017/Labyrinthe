@@ -63,6 +63,7 @@
     <Compile Include="Inventaire.cs" />
     <Compile Include="Joueur.cs" />
     <Compile Include="Loot.cs" />
+    <Compile Include="Loot_Carte.cs" />
     <Compile Include="Loot_Etre.cs" />
     <Compile Include="Loot_Porte.cs" />
     <Compile Include="Loot_SortChoix.cs" />

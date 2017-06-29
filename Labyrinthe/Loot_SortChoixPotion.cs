@@ -9,6 +9,21 @@ namespace Labyrinthe
     internal class Loot_SortChoixPotion : Loot_SortChoix
     {
        Joueur personnage = new Joueur();
+        TypeSort _sortPotion = new TypeSort();
+
+        internal TypeSort SortPotion
+        {
+            get
+            {
+                return _sortPotion;
+            }
+
+            set
+            {
+                _sortPotion = value;
+            }
+        }
+
         public void PotionVitesse()
         {
             personnage.Vitesse += constantesLoot.SortPotionVitesse;

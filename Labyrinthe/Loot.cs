@@ -16,10 +16,26 @@ namespace Labyrinthe
 		Cle = 7,
 		Pic = 8,
 	}
+    enum TypeSort
+    {
+        SortVitesse = 0,
+        SortForce = 1,
+        SortVision = 2,
+        SortTeleportation=3
+    };
 
-
-	public class Loot
+    public class Loot
 	{
+
+		internal static LootConstantes constantesLoot = new LootConstantes();
+	   
+		
+
+	}
+   /* public Loot ChoixLoot()
+	{
+		Effet typeLoot = new Effet();
+=======
         internal static LootConstantes constantesLoot = new LootConstantes();
 
         public string name;
@@ -56,6 +72,7 @@ namespace Labyrinthe
   break;
      }
  }*/
+
 
 
 
