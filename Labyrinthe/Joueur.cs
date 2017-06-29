@@ -20,8 +20,7 @@ namespace Labyrinthe
         int _vision;
         decimal _vitesse, _force;
         Inventaire _inventaire = new Inventaire();
-        MyLabyrinthe _laby = Partie.ConstructionLabyrinthe();
-
+        MyLabyrinthe _tableau = Partie.ConstructionLabyrinthe();
 
 
         public void Deplacement(Direction d)
@@ -58,23 +57,19 @@ namespace Labyrinthe
                 case Direction.HAUT:
                     if (Position.Y == 0)
                         return true;
-                    else return (Laby.Laby[(int)Position.X, (int)Position.Y - 1]);
-                    break;
+                    else return (Laby.Tableau[(int)Position.X, (int)Position.Y - 1]);
                 case Direction.DROITE:
-                    if (Position.X == Laby.Laby.GetLength(0)-1)
+                    if (Position.X == Laby.Tableau.GetLength(0)-1)
                         return true;
-                    else return (Laby.Laby[(int)Position.X + 1, (int)Position.Y]);
-                    break;
+                    else return (Laby.Tableau[(int)Position.X + 1, (int)Position.Y]);
                 case Direction.BAS:
-                    if (Position.Y == Laby.Laby.GetLength(1)-1)
+                    if (Position.Y == Laby.Tableau.GetLength(1)-1)
                         return true;
-                    else return (Laby.Laby[(int)Position.X, (int)Position.Y + 1]);
-                    break;
+                    else return (Laby.Tableau[(int)Position.X, (int)Position.Y + 1]);
                 case Direction.GAUCHE:
                     if (Position.X == 0)
                         return true;
-                    else return (Laby.Laby[(int)Position.X - 1, (int)Position.Y]);
-                    break;
+                    else return (Laby.Tableau[(int)Position.X - 1, (int)Position.Y]);
             }
             return false;
         }
@@ -113,12 +108,12 @@ namespace Labyrinthe
         {
             get
             {
-                return _laby;
+                return _tableau;
             }
 
             set
             {
-                _laby = value;
+                _tableau = value;
             }
         }
     }

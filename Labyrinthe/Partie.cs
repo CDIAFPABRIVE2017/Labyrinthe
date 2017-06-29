@@ -4,12 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using MazeDll;
 
 namespace Labyrinthe
 {
     public class Partie
     {
-        bool _isClient;
+
+        public static int hauteur, largeur;
+        public static bool _isClient;
         public MyLabyrinthe laby;
 
         public bool IsClient
@@ -25,15 +28,16 @@ namespace Labyrinthe
             }
         }
 
-        public void Lancement()
+          public void Lancement()
         {
             // Broadcast "serveur ?"
             //attend la réponse true sec
 
-            if (/*on reçoit une réponse*/false)
+            IsClient = false;
+            /*if (false)
                 IsClient = true;
             else
-                IsClient = false;
+                IsClient = false;*/
 
             laby = ConstructionLabyrinthe();
         }
@@ -49,14 +53,21 @@ namespace Labyrinthe
 
 
 
-              ///Ca c'est juste pour le test.
-            MyLabyrinthe laby = new MyLabyrinthe();
-            laby.Laby = new bool[,] { { true, false, false, false, false, false, false, false, true, false }, { true, false, true, false, true, false, true, false, true, false }, { false, false, true, false, true, false, true, false, true, false }, { true, false, true, false, true, false, true, false, true, false }, { true, false, true, false, false, false, true, false, true, false }, { true, false, true, true, true, true, true, false, true, false }, { true, false, true, false, false, false, false, false, false, false }, { true, true, true, true, true, true, true, true, true, false }, { true, true, true, true, true, true, true, true, true, false }, { true, true, true, true, true, true, true, true, true, false } };
-            laby.Liste = new DicoLoot();
-            laby.Liste.Add(new Point(1, 3), new Labyrinthe.Loot("Un gros bidule"));
-            laby.Liste.Add(new Point(4, 4), new Labyrinthe.Loot("Une potion de vitesse"));
-            laby.Liste.Add(new Point(6, 6), new Labyrinthe.Loot("une GROSSE EPEE"));
+            ///Ca c'est juste pour le test.
+            /*           MyLabyrinthe laby = new MyLabyrinthe();
+                       laby.Laby = new bool[,] { { true, false, false, false, false, false, false, false, true, false }, { true, false, true, false, true, false, true, false, true, false }, { false, false, true, false, true, false, true, false, true, false }, { true, false, true, false, true, false, true, false, true, false }, { true, false, true, false, false, false, true, false, true, false }, { true, false, true, true, true, true, true, false, true, false }, { true, false, true, false, false, false, false, false, false, false }, { true, true, true, true, true, true, true, true, true, false }, { true, true, true, true, true, true, true, true, true, false }, { true, true, true, true, true, true, true, true, true, false } };
+                       laby.Liste = new DicoLoot();
+                       laby.Liste.Add(new Point(1, 3), new Labyrinthe.Loot("Un gros bidule"));
+                       laby.Liste.Add(new Point(4, 4), new Labyrinthe.Loot("Une potion de vitesse"));
+                       laby.Liste.Add(new Point(6, 6), new Labyrinthe.Loot("une GROSSE EPEE"));
+           */
 
+            MyLabyrinthe laby = new Labyrinthe.MyLabyrinthe();
+            int[,] tempMaze = new int[hauteur, largeur];
+            Maze.InitialiseTableau(tempMaze, hauteur, largeur);
+            Maze.GenereCheminPrimaire(tempMaze, hauteur, largeur, 1, 0);
+
+            laby.ConversionMaze(tempMaze);
             return laby;
         }
 
