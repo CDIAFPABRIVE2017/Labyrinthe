@@ -45,6 +45,7 @@ namespace Labyrinthe
         public void ConversionMaze(int[,] maze)
         {
             this.Tableau = new bool[maze.GetLength(0), maze.GetLength(1)];
+
             for (int j = 0; j < maze.GetLength(1); j++)
                 for (int i = 0; i < maze.GetLength(0); i++)
                 {
@@ -58,12 +59,14 @@ namespace Labyrinthe
                             break;
                         default:
                             ModifierLabyrinthe(i, j, false);
-                            Liste.Add(new Point(i, j), new Labyrinthe.Loot("random"));
+                            Point point = new Point(i, j);
+                            Loot loot = new Labyrinthe.Loot("random");
+                            Liste.Add(point,loot);
                             break;
                     }
                 }
         }
 
-        public MyLabyrinthe() { }
+        public MyLabyrinthe() { _liste = new DicoLoot(); }
     }
 }

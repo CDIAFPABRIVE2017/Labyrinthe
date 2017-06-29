@@ -18,11 +18,12 @@ namespace MainTemp
             Loot loot;
             partie.Lancement();
 
+            joueur.Laby = partie.laby;
             joueur.Position = new Point(1, 1);
             while (true)
             {
                 ChangeCaseListener();
-                loot = partie.TryRamassageObjet(joueur.Position);
+                loot = partie.TryRamassageObjet(joueur);
                 AffichageConsole.AffichageLaby(partie.laby, joueur);
                 if (!Loot.IsNull(loot))
                 {

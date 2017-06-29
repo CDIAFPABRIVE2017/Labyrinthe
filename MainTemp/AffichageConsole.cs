@@ -19,16 +19,18 @@ namespace MainTemp
                 for(int i = 0; i <laby.Tableau.GetLength(1); i++)
                 {
                     if (joueur.Position == new Point(i, j))
-                        Console.Write("X");
+                        Console.Write("XX");
                     else
                     {
-                        laby.Liste.TryGetValue(new Point(i, j), out loot);
-                        if (!Loot.IsNull(loot))
-                            Console.Write("L");
-                        else if (laby.Tableau[i, j])
-                            Console.Write("█");
-                        else
-                            Console.Write(" ");
+                           laby.Liste.TryGetValue(new Point(i, j), out loot);
+                           if (!Loot.IsNull(loot))
+                               Console.Write("LL");
+                           else if (laby.Tableau[i, j])
+                               Console.Write("██");
+                           else
+                               Console.Write("░░");
+
+                      //  Console.Write("{0}{1} ", i, j);
                     }
                 }
                 Console.WriteLine();
