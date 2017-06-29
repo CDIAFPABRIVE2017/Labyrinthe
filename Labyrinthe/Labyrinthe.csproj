@@ -80,11 +80,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>LootConstantes.settings</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -92,10 +87,6 @@
     <None Include="LootConstantes.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>LootConstantes.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

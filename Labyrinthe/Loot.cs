@@ -26,7 +26,7 @@ namespace Labyrinthe
 
     public class Loot
 	{
-        public string name;
+        string name;
 
 
 		internal static LootConstantes constantesLoot = new LootConstantes();
