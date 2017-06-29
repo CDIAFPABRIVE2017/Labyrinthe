@@ -19,6 +19,7 @@ namespace MainTemp
             partie.Lancement();
 
             joueur.Laby = partie.laby;
+            joueur.InitialisationCarte();
             joueur.Position = new Point(1, 1);
             while (true)
             {
