@@ -7,40 +7,77 @@ using System.Windows;
 
 namespace Labyrinthe
 {
-    enum Direction
+    public enum Direction
     {
         HAUT = 0,
         DROITE = 1,
         BAS = 2,
         GAUCHE = 3
     }
-    
     public class Joueur
     {
         Point _position;
         int _vision;
         decimal _vitesse, _force;
-        Inventaire _inventaire;
+        Inventaire _inventaire = new Inventaire();
+        MyLabyrinthe _laby = Partie.ConstructionLabyrinthe();
 
-        Loot metre = new Loot_Etre();
-        
-       
-             void Deplacement(Direction d)
-             {
-                 if (ChangementCase(d))
-                 {
-                     // Modif position
-                     // Notifier serveur du déplacement
-                     // Le serveur répond avec l'éventuel objet ou rencontre, ou vide...
-                     // On réagit en conséquence.
-                 }
-             } 
+
+
+        public void Deplacement(Direction d)
+        {
+            if (!isMur(d))
+            {
+                switch (d)
+                {
+                    case Direction.HAUT:
+                        Position = new Point(Position.X, Position.Y - 1);
+                        break;
+                    case Direction.DROITE:
+                        Position = new Point(Position.X + 1, Position.Y);
+                        break;
+                    case Direction.BAS:
+                        Position = new Point(Position.X, Position.Y + 1);
+                        break;
+                    case Direction.GAUCHE:
+                        Position = new Point(Position.X - 1, Position.Y);
+                        break;
+                }
+            }
+        }
 
         /// <summary>
         /// Retourne si le mouvement peut être fait
         /// </summary>
         /// <param name="d">Direction</param>
         /// <returns></returns>
+        public bool isMur(Direction d)
+        {
+            switch (d)
+            {
+                case Direction.HAUT:
+                    if (Position.Y == 0)
+                        return true;
+                    else return (Laby.Laby[(int)Position.X, (int)Position.Y - 1]);
+                    break;
+                case Direction.DROITE:
+                    if (Position.X == Laby.Laby.GetLength(0)-1)
+                        return true;
+                    else return (Laby.Laby[(int)Position.X + 1, (int)Position.Y]);
+                    break;
+                case Direction.BAS:
+                    if (Position.Y == Laby.Laby.GetLength(1)-1)
+                        return true;
+                    else return (Laby.Laby[(int)Position.X, (int)Position.Y + 1]);
+                    break;
+                case Direction.GAUCHE:
+                    if (Position.X == 0)
+                        return true;
+                    else return (Laby.Laby[(int)Position.X - 1, (int)Position.Y]);
+                    break;
+            }
+            return false;
+        }
 
         public Point Position
         {
@@ -66,11 +103,23 @@ namespace Labyrinthe
             set { _force = value; }
         }
 
-        internal Inventaire Inventaire
+        public Inventaire Inventaire
         {
             get { return _inventaire; }
             set { _inventaire = value;}
         }
 
+        public MyLabyrinthe Laby
+        {
+            get
+            {
+                return _laby;
+            }
+
+            set
+            {
+                _laby = value;
+            }
+        }
     }
 }
