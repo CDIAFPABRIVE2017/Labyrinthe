@@ -18,22 +18,7 @@ namespace Labyrinthe
         TypeEtre _etre = new TypeEtre();
         int _force = 0;
 
-        public void ForceEtre(TypeEtre etre)
-        {
-            switch (etre)
-            {
-                case TypeEtre.Dragon: _force = constantesLoot.ForceDragon;
-                    break;
-                case TypeEtre.Gobelin:
-                    _force = constantesLoot.ForceGobelin;
-                    break;
-                case TypeEtre.Spectre:
-                    _force = constantesLoot.ForceSpectre;
-                    break;
-                default:
-                    break;
-            }
-        }
+
 
         public TypeEtre Etre
         {
@@ -48,6 +33,19 @@ namespace Labyrinthe
             }
         }
 
+        public int Force
+        {
+            get
+            {
+                return _force;
+            }
+
+            set
+            {
+                _force = value;
+            }
+        }
+
         public void AttackPersonnage(int valeurforceAttack)
         {
             personnage.Force -= valeurforceAttack;
@@ -59,11 +57,28 @@ namespace Labyrinthe
         /// <returns></returns>
         public bool EstVivant()
         {
-            if (this._force <= 0)
+            if (this.Force <= 0)
             {
                 return false;
             }
             return true;
+        }
+        public void DefaultForceEtre(TypeEtre etre)
+        {
+            switch (etre)
+            {
+                case TypeEtre.Dragon:
+                    Force = constantesLoot.ForceDragon;
+                    break;
+                case TypeEtre.Gobelin:
+                    Force = constantesLoot.ForceGobelin;
+                    break;
+                case TypeEtre.Spectre:
+                    Force = constantesLoot.ForceSpectre;
+                    break;
+                default:
+                    break;
+            }
         }
 
     }
