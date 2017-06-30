@@ -17,19 +17,21 @@ namespace MainTemp
         {
             Loot loot;
             partie.Lancement();
+            Random rnd = new Random();
 
             joueur.Laby = partie.laby;
             joueur.InitialisationCarte();
-            joueur.Position = new Point(1, 1);
+            joueur.Position = new Point(rnd.Next(50),rnd.Next(50));
             while (true)
             {
                 ChangeCaseListener();
                 loot = partie.TryRamassageObjet(joueur);
-                //On peut changer par AffichageLaby si on ne veut que le laby sans la carte.
-                AffichageConsole.AffichageCarte(partie.laby, joueur);
+                //Mettre l'affichage voulu...
+                AffichageConsole.AffichageDeuxCartes(partie.laby, joueur);
                 if (!Loot.IsNull(loot))
                 {
                     joueur.Inventaire.Add(loot);
+                    joueur.SubirEffet(loot);
                     Console.WriteLine("Loooot !");
                     foreach (Loot item in joueur.Inventaire)
                         Console.WriteLine(item.name);

@@ -17,9 +17,10 @@ namespace Labyrinthe
     public class Joueur
     {
         Point _position;
-        int _vision = 2;
+        int _vision = 1;
         decimal _vitesse, _force;
         Inventaire _inventaire = new Inventaire();
+        bool _carte = false;
         MyLabyrinthe _tableau = Partie.ConstructionLabyrinthe();
 
         MyLabyrinthe _carteLaby;
@@ -137,6 +138,19 @@ namespace Labyrinthe
             }
         }
 
+        public bool Carte
+        {
+            get
+            {
+                return _carte;
+            }
+
+            set
+            {
+                _carte = value;
+            }
+        }
+
         public void ModificationCarte(Point position, int Vision)
         {
             for (int i = 0-Vision; i < 0+Vision+1; i++)
@@ -148,12 +162,19 @@ namespace Labyrinthe
         public void InitialisationCarte()
         {
             CarteLaby = new MyLabyrinthe();
-                //new MyLabyrinthe [_tableau.Tableau.GetLength(0), _tableau.Tableau.GetLength(1)];
-            //carte.Tableau;
+
             CarteLaby.Tableau = new bool[_tableau.Tableau.GetLength(0), _tableau.Tableau.GetLength(1)];
             for (int i = 0; i < _tableau.Tableau.GetLength(0); i++)
                 for (int j = 0; j < _tableau.Tableau.GetLength(1); j++)
                     CarteLaby.ModifierLabyrinthe(i, j, false);
+        }
+
+        public void SubirEffet(Loot loot)
+        {
+            if (loot.name == "Pilule de vision")
+                Vision++;
+            if (loot.name == "Carte")
+                Carte = true;
         }
     }
 }
