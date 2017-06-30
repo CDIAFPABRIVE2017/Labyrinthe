@@ -25,7 +25,8 @@ namespace MainTemp
             {
                 ChangeCaseListener();
                 loot = partie.TryRamassageObjet(joueur);
-                AffichageConsole.AffichageLaby(partie.laby, joueur);
+                //On peut changer par AffichageLaby si on ne veut que le laby sans la carte.
+                AffichageConsole.AffichageCarte(partie.laby, joueur);
                 if (!Loot.IsNull(loot))
                 {
                     joueur.Inventaire.Add(loot);

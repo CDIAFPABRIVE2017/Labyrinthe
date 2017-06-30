@@ -14,7 +14,8 @@ namespace Labyrinthe
 
         public void ModifierLabyrinthe(int i, int j, bool val)
         {
-            _tableau[i, j] = val;
+            if (i>=0 && j>= 0 && i<Tableau.GetLength(0) && j<Tableau.GetLength(1))
+                _tableau[i, j] = val;
         }
         public bool[,] Tableau
         {

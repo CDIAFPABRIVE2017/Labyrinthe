@@ -17,12 +17,12 @@ namespace Labyrinthe
     public class Joueur
     {
         Point _position;
-        int _vision;
+        int _vision = 2;
         decimal _vitesse, _force;
         Inventaire _inventaire = new Inventaire();
         MyLabyrinthe _tableau = Partie.ConstructionLabyrinthe();
 
-        MyLabyrinthe carteLaby;
+        MyLabyrinthe _carteLaby;
 
        // _tableau.Tableau.GetLength(0), _tableau.Tableau.GetLength(1)
 
@@ -48,7 +48,7 @@ namespace Labyrinthe
                         Position = new Point(Position.X - 1, Position.Y);
                         break;
                 }
-                ModificationCarte(Position);
+                ModificationCarte(Position, Vision);
             }
         }
 
@@ -123,17 +123,37 @@ namespace Labyrinthe
                 _tableau = value;
             }
         }
-        public void ModificationCarte(Point position)
+
+        public MyLabyrinthe CarteLaby
         {
-            carteLaby.ModifierLabyrinthe((int)position.X, (int)position.Y, true);            
+            get
+            {
+                return _carteLaby;
+            }
+
+            set
+            {
+                _carteLaby = value;
+            }
+        }
+
+        public void ModificationCarte(Point position, int Vision)
+        {
+            for (int i = 0-Vision; i < 0+Vision+1; i++)
+                for (int j = 0-Vision; j<0+Vision+1;j++)
+                    CarteLaby.ModifierLabyrinthe((int)position.X+i, (int)position.Y+j, true);
+                        
         }
 
         public void InitialisationCarte()
         {
-            carteLaby = new MyLabyrinthe();
+            CarteLaby = new MyLabyrinthe();
                 //new MyLabyrinthe [_tableau.Tableau.GetLength(0), _tableau.Tableau.GetLength(1)];
             //carte.Tableau;
-            carteLaby.Tableau = new bool[_tableau.Tableau.GetLength(0), _tableau.Tableau.GetLength(1)];
+            CarteLaby.Tableau = new bool[_tableau.Tableau.GetLength(0), _tableau.Tableau.GetLength(1)];
+            for (int i = 0; i < _tableau.Tableau.GetLength(0); i++)
+                for (int j = 0; j < _tableau.Tableau.GetLength(1); j++)
+                    CarteLaby.ModifierLabyrinthe(i, j, false);
         }
     }
 }
