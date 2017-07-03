@@ -23,7 +23,7 @@ namespace MainTemp
                         Console.Write("XX");
                     else
                     {
-                        laby.Liste.TryGetValue(new Point(i, j), out loot);
+                        laby.Liste.TryGetValue((new Point(i, j)).ToString(), out loot);
                         if (!Loot.IsNull(loot))
                         {
                             switch (loot.name)
@@ -100,7 +100,7 @@ namespace MainTemp
                         Console.Write("XX");
                     else
                     {
-                        laby.Liste.TryGetValue(new Point(i, j), out loot);
+                        laby.Liste.TryGetValue((new Point(i, j)).ToString(), out loot);
                         if (!Loot.IsNull(loot))
                         {
                             switch (loot.name)
@@ -168,7 +168,7 @@ namespace MainTemp
                         Console.Write("XX");
                     else
                     {
-                           laby.Liste.TryGetValue(new Point(i, j), out loot);
+                           laby.Liste.TryGetValue((new Point(i, j)).ToString(), out loot);
                            if (!Loot.IsNull(loot))
                             {
                             switch (loot.name)
