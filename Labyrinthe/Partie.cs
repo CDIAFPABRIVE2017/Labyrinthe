@@ -84,9 +84,9 @@ namespace Labyrinthe
             else
             {
                 Loot loot;
-                if (joueur.Laby.Liste.TryGetValue(joueur.Position, out loot))
+                if (joueur.Laby.Liste.TryGetValue(joueur.Position.ToString(), out loot))
                 {
-                    joueur.Laby.Liste.Remove(joueur.Position);
+                    joueur.Laby.Liste.Remove(joueur.Position.ToString());
                     
                     //Prévenir les autres de remove cet objet !
                     return loot;

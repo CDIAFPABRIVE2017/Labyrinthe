@@ -27,7 +27,7 @@ namespace Labyrinthe
             }
         }
 
-        public void ChoixSortCarte(TypeSort sort)
+       /* public void ChoixSortCarte(TypeSort sort)
         {
             switch (sort)
             {
@@ -46,6 +46,7 @@ namespace Labyrinthe
                     break;
             }
         }
+        */
 
         public void CarteVitesse()
         {

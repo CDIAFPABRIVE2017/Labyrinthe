@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Labyrinthe
 {
-     public class Inventaire: List<Loot_Sort>
+     public class Inventaire: List<Loot>
     {
         //ATTRIBUTS
         private Inventaire _InvSort;
@@ -27,14 +27,14 @@ namespace Labyrinthe
         }
 
         //METHODES
-        public Loot_Sort GetSort(int index)
+        public Loot GetSort(int index)
         {
             return this[index];
         }
 
         public string GetNomSort(int index)
         {
-            return ((this[index]).Name).ToString();
+            return ((this[index]).name).ToString();
         }
 
         public void EnleveSort(int index)
