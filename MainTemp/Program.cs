@@ -20,54 +20,43 @@ namespace MainTemp
             partie.Lancement();
             Random rnd = new Random();
             Thread boucle = new Thread(new ThreadStart(BoucleJeu));
-            Thread listener = new Thread(new ThreadStart(Listen));
 
             joueur.Laby = partie.laby;
             joueur.InitialisationCarte();
             joueur.askPosition();
 
             boucle.Start();
-            listener.Start();
-
         }
 
-        public static void Listen()
-        {
-
-        }
-
-        public static void BoucleJeu()
+        public static void Deplacement(Direction dir)
         {
             Loot loot;
-            do
+
+            if (dir != Direction.AUTRE)
             {
-                Direction dir = ChangeCaseListener();
-                if (dir != Direction.AUTRE)
+                //C>S : JE PEUX BOUGER ?
+                //SI S>C NON :
+                //RENCONTRE !
+                //SI S>C OUI :
+                joueur.Deplacement(dir);
+                loot = partie.TryRamassageObjet(joueur);
+                //C>S J'AI BOUGE ICI
+                //SERVEUR UPDATE LA POSITION ET REGARDE SI OBJET
+                //SI OBJET, LE REMOVE ET S>C ORDONNE DE REMOVE AUX AUTRES JOUEURS
+
+
+                //Mettre l'affichage voulu...
+                AffichageConsole.AffichageStandard(partie.laby, joueur);
+
+                if (!Loot.IsNull(loot))
                 {
-                    //C>S : JE PEUX BOUGER ?
-                    //SI S>C NON :
-                        //RENCONTRE !
-                    //SI S>C OUI :
-                    joueur.Deplacement(dir);
-                    loot = partie.TryRamassageObjet(joueur);
-                    //C>S J'AI BOUGE ICI
-                    //SERVEUR UPDATE LA POSITION ET REGARDE SI OBJET
-                    //SI OBJET, LE REMOVE ET S>C ORDONNE DE REMOVE AUX AUTRES JOUEURS
+                    joueur.Inventaire.Add(loot);
+                    joueur.SubirEffet(loot);
 
-
-                    //Mettre l'affichage voulu...
-                    AffichageConsole.AffichageStandard(partie.laby, joueur);
-
-                    if (!Loot.IsNull(loot))
-                    {
-                        joueur.Inventaire.Add(loot);
-                        joueur.SubirEffet(loot);
-
-                        //Mode console only
-                        Console.WriteLine("Loooot ! {0}",loot.name);
-                    }
+                    //Mode console only
+                    Console.WriteLine("Loooot ! {0}", loot.name);
                 }
-            } while (true);
+            }
         }
 
         public static Direction ChangeCaseListener()
