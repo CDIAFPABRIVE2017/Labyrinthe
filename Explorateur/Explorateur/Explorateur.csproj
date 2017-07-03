@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1994B00B-FF11-46ED-8E9D-A4FB9760AD0D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Explorateur</RootNamespace>
+    <AssemblyName>Explorateur</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Explorateur.Principal</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Jeux.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Jeux.Designer.cs">
+      <DependentUpon>Jeux.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Principal.cs" />
+    <Compile Include="Maze.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Jeux.resx">
+      <DependentUpon>Jeux.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Haut0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Haut1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Haut2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Haut3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Haut4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Haut5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Haut6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Haut7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Haut8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Gauche0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Gauche1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Gauche2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Gauche3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Gauche4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Gauche5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Gauche6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Gauche7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Gauche8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bas0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bas1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bas2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bas3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bas4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bas5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bas6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bas7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bas8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Droite0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Droite1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Droite2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Droite3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Droite4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Droite5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Droite6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Droite7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Droite8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\murs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\warfog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PasMarbre.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PorteMagiqueBleu.png" />
+    <None Include="Resources\porte4.png" />
+    <None Include="Resources\porte3.png" />
+    <None Include="Resources\porte2.png" />
+    <None Include="Resources\porte1.png" />
+    <None Include="Resources\solSable.png" />
+    <None Include="Resources\solGravier.png" />
+    <None Include="Resources\cielEtoiles.png" />
+    <None Include="Resources\blanc.png" />
+    <None Include="Resources\escalierPierre.png" />
+    <None Include="Resources\GrilleFermee.png" />
+    <None Include="Resources\GrilleOuverte.png" />
+    <Content Include="Resources\Image1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Labyrinthe\Labyrinthe.csproj">
+      <Project>{dcb958d4-34a4-4fe2-8693-e3b568e5b3bb}</Project>
+      <Name>Labyrinthe</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MazeDll\MazeDll.csproj">
+      <Project>{edb2dc8e-d6f3-47cd-8fbd-ac21afb582ba}</Project>
+      <Name>MazeDll</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

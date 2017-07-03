@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Labyrinthe;
+using MazeDll;
+using System.Threading;
 
 namespace MainTemp
 {
@@ -15,54 +17,81 @@ namespace MainTemp
 
         static void Main(string[] args)
         {
-            Loot loot;
             partie.Lancement();
             Random rnd = new Random();
+            Thread boucle = new Thread(new ThreadStart(BoucleJeu));
+            Thread listener = new Thread(new ThreadStart(Listen));
 
             joueur.Laby = partie.laby;
             joueur.InitialisationCarte();
-            joueur.Position = new Point(rnd.Next(50),rnd.Next(50));
-            while (true)
-            {
-                ChangeCaseListener();
-                loot = partie.TryRamassageObjet(joueur);
-                //Mettre l'affichage voulu...
-                AffichageConsole.AffichageDeuxCartes(partie.laby, joueur);
-                if (!Loot.IsNull(loot))
-                {
-                    joueur.Inventaire.Add(loot);
-                    joueur.SubirEffet(loot);
-                    Console.WriteLine("Loooot !");
-                    foreach (Loot item in joueur.Inventaire)
-                        Console.WriteLine(item.Name);
-                }
+            joueur.askPosition();
 
-            }
+            boucle.Start();
+            listener.Start();
 
-
-              
         }
 
-        public static void ChangeCaseListener()
+        public static void Listen()
         {
+
+        }
+
+        public static void BoucleJeu()
+        {
+            Loot loot;
+            do
+            {
+                Direction dir = ChangeCaseListener();
+                if (dir != Direction.AUTRE)
+                {
+                    //C>S : JE PEUX BOUGER ?
+                    //SI S>C NON :
+                        //RENCONTRE !
+                    //SI S>C OUI :
+                    joueur.Deplacement(dir);
+                    loot = partie.TryRamassageObjet(joueur);
+                    //C>S J'AI BOUGE ICI
+                    //SERVEUR UPDATE LA POSITION ET REGARDE SI OBJET
+                    //SI OBJET, LE REMOVE ET S>C ORDONNE DE REMOVE AUX AUTRES JOUEURS
+
+
+                    //Mettre l'affichage voulu...
+                    AffichageConsole.AffichageStandard(partie.laby, joueur);
+
+                    if (!Loot.IsNull(loot))
+                    {
+                        joueur.Inventaire.Add(loot);
+                        joueur.SubirEffet(loot);
+
+                        //Mode console only
+                        Console.WriteLine("Loooot ! {0}",loot.name);
+                    }
+                }
+            } while (true);
+        }
+
+        public static Direction ChangeCaseListener()
+        {
+
+            //Mode console only
             ConsoleKey saisie = Console.ReadKey().Key;
             Console.WriteLine(saisie.ToString());
             switch (saisie)
             {
                 case ConsoleKey.UpArrow:
-                    joueur.Deplacement(Direction.HAUT);
-                    break;
+                    return Direction.HAUT;
+
                 case ConsoleKey.DownArrow:
-                    joueur.Deplacement(Direction.BAS);
-                    break;
+                    return Direction.BAS;
+
                 case ConsoleKey.RightArrow:
-                    joueur.Deplacement(Direction.DROITE);
-                    break;
+                    return Direction.DROITE;
+
                 case ConsoleKey.LeftArrow:
-                    joueur.Deplacement(Direction.GAUCHE);
-                    break;
+                    return Direction.GAUCHE;
+
                 default:
-                    break;
+                    return Direction.AUTRE;
             }
         }
     }

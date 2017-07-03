@@ -72,6 +72,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Explorateur\Explorateur\Explorateur.csproj">
+      <Project>{1994b00b-ff11-46ed-8e9d-a4fb9760ad0d}</Project>
+      <Name>Explorateur</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Labyrinthe\Labyrinthe.csproj">
       <Project>{dcb958d4-34a4-4fe2-8693-e3b568e5b3bb}</Project>
       <Name>Labyrinthe</Name>

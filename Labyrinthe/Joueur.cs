@@ -14,7 +14,8 @@ namespace Labyrinthe
         HAUT = 0,
         DROITE = 1,
         BAS = 2,
-        GAUCHE = 3
+        GAUCHE = 3,
+        AUTRE = 666
     }
     public class Joueur
     {
@@ -90,7 +91,10 @@ namespace Labyrinthe
         public Point Position
         {
             get { return _position; }
-            set { _position = value; }
+            set
+            {
+                _position = value;
+            }
         }
 
         public int Vision
@@ -180,6 +184,13 @@ namespace Labyrinthe
                 Vision++;
             if (loot.name == "Carte")
                 Carte = true;
+        }
+
+        public void askPosition()
+        {
+            //pose la question au serveur !
+            Random rnd = new Random();
+            this.Position = new Point(rnd.Next(50), rnd.Next(50));
         }
     }
 }
