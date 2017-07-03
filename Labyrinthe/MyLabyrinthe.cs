@@ -96,7 +96,7 @@ namespace Labyrinthe
                 x = rnd.Next(Tableau.GetLength(0));
                 y = rnd.Next(Tableau.GetLength(1));
             }
-            while ((Tableau[x, y]) || (Liste.TryGetValue(new Point(x, y), out test)));
+            while ((Tableau[x, y]) || (Liste.TryGetValue(new Point(x, y).ToString(), out test)));
 
             return (new Point(x, y));
 

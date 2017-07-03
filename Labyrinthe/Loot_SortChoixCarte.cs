@@ -27,7 +27,7 @@ namespace Labyrinthe
             }
         }
 
-        public void ChoixSortCarte(TypeSort sort)
+   /*     public void ChoixSortCarte(TypeSort sort)
         {
             switch (sort)
             {
@@ -62,6 +62,6 @@ namespace Labyrinthe
         public void CarteTeleportation(Point positionArrive)
         {
             personnage.Position = positionArrive;
-        }
+        }*/
     }
 }
