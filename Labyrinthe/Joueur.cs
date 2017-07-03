@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
+
+
 namespace Labyrinthe
 {
     public enum Direction
@@ -19,7 +21,7 @@ namespace Labyrinthe
         Point _position;
         int _vision = 1;
         decimal _vitesse, _force;
-        Inventaire _inventaire = new Inventaire();
+        Inventaire _inventaire /*= new Inventaire()*/;
         bool _carte = false;
         MyLabyrinthe _tableau = Partie.ConstructionLabyrinthe();
 
@@ -28,7 +30,10 @@ namespace Labyrinthe
        // _tableau.Tableau.GetLength(0), _tableau.Tableau.GetLength(1)
 
 
-
+            public Joueur()
+        {
+            _inventaire = new Inventaire();
+        }
 
         public void Deplacement(Direction d)
         {

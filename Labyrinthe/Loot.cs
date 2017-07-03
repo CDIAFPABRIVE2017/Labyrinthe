@@ -25,13 +25,25 @@ namespace Labyrinthe
 
 	public class Loot
 	{
-		public string name;
+        private string _name;
 
 
-		internal static LootConstantes constantesLoot = new LootConstantes();
+        internal static LootConstantes constantesLoot = new LootConstantes();
 
+        public string name
+        {
+            get
+            {
+                return _name;
+            }
 
-		public static bool IsNull(Loot loot)
+            set
+            {
+                _name = value;
+            }
+        }
+
+       public static bool IsNull(Loot loot)
 		{
 			return (loot == null);
 		}

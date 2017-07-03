@@ -2,6 +2,7 @@
 using System.Windows;
 
 
+
 namespace Labyrinthe
 {
     public class DicoLoot : SortedDictionary<string,Loot>
