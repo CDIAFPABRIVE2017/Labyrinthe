@@ -264,7 +264,7 @@ namespace Labyrinthe
 
                     if (repconv < bob.Inventaire.QuantiteSort())
                     {
-                        sorinv = bob.Inventaire.GetSort(repconv);
+                        sorinv = (Loot_Sort)bob.Inventaire.GetSort(repconv);
                         sorinv.Affect(bob);
                         bob.Inventaire.EnleveSort(repconv);
 

@@ -10,39 +10,36 @@ namespace MazeGenerator
     {
         static void Main(string[] args)
         {
-            // Initialise la console
-            //			Console.WindowTop = 0;
-            //			Console.WindowLeft = 0;
-            //			Console.WindowWidth = 150;
-            //			Console.WindowHeight = 61;
-
-            FenPrincipale();
-        }
-
-        private static void FenPrincipale()
-        {
-            int Hauteur = 41;
-            int Largeur = 41;
+            int Hauteur =61;
+            int Largeur = 61;
             int DirHorizont = 1;
-            int DirVertival = 0;
+            int DirVertical = 0;
 
 
             // Liste a deux dimentions
 
             int[,] Maze = new int[Hauteur, Largeur];
 
+            FenPrincipale(Maze,Hauteur, Largeur, DirHorizont, DirVertical);
+        }
+
+        public static void FenPrincipale(int[,] Maze, int Hauteur, int Largeur, int DirHorizont, int DirVertical)
+        {
+
+
 
             InitialiseTableau(Maze, Hauteur, Largeur);
 
             //CentreMaze(Maze, Hauteur, Largeur);
 
-            GenereCheminPrimaire(Maze, Hauteur, Largeur, DirHorizont, DirVertival);
+            GenereCheminPrimaire(Maze, Hauteur, Largeur, DirHorizont, DirVertical);
 
-            Console.Clear();
+            //Console.Clear();
+
 
             AffichageTableau(Maze, Hauteur, Largeur);           //Affichage du Maze[,]          
 
-            Console.ReadLine();
+            //Console.ReadLine();
 
         }
 
@@ -77,13 +74,11 @@ namespace MazeGenerator
 
 
         }
-        private static void InitialiseTableau(int[,] Maze, int Hauteur, int Largeur)
+        public static void InitialiseTableau(int[,] Maze, int Hauteur, int Largeur)
         {
 
-            // Initialisation de la liste avec des 0
+            // Initialisation de la liste 
             int Pas = 10;
-
-
 
             for (int H = 0; H < Hauteur; H++)
             {
@@ -103,25 +98,11 @@ namespace MazeGenerator
                         Maze[H, L] = 1;
 
                     }
-
-
                 }
-
-
             }
         }
-        private static void CentreMaze(int[,] Maze, int Hauteur, int Largeur)
-        {
 
-            int MilH = Hauteur / 2;
-            int MilL = Largeur / 2;
-
-            Maze[MilH, MilL] = 0;
-
-
-        }
-
-        private static void GenereCheminPrimaire(int[,] Maze, int Hauteur, int Largeur, int DirHorizont, int DirVertical)
+        public static void GenereCheminPrimaire(int[,] Maze, int Hauteur, int Largeur, int DirHorizont, int DirVertical)
         {
 
 
@@ -171,9 +152,6 @@ namespace MazeGenerator
                             EtatEst = Maze[H, L + 1];
                             EtatSud = Maze[H - 1, L];
                             EtatOuest = Maze[H, L - 1];
-
-
-
 
                             switch (direction)
 
@@ -225,15 +203,10 @@ namespace MazeGenerator
                                     }
 
                                     break;
-
                             }
                         }
-
-
-
                     }
                 }
-
             }
 
             #endregion
@@ -264,9 +237,6 @@ namespace MazeGenerator
                         EtatEst = Maze[H, L + 1];
                         EtatSud = Maze[H - 1, L];
                         EtatOuest = Maze[H, L - 1];
-
-
-
 
                         switch (direction)
 
@@ -333,13 +303,78 @@ namespace MazeGenerator
 
             #region Generation étape 3
 
+            for (int h = 1; h < Hauteur - 1; h++)
+
+            {
+                for (int l = 1; l < Largeur - 1; l++)
+                {
+
+                    H = h;
+                    L = l;
+
+                    int direction = DirectionPorte.Next(1, 4);
+
+                    EtatNord = Maze[H + 1, L];
+                    EtatEst = Maze[H, L + 1];
+                    EtatSud = Maze[H - 1, L];
+                    EtatOuest = Maze[H, L - 1];
+
+                    if (EtatNord == 1 && EtatEst == 1 && EtatSud == 1 && EtatOuest == 1)
+                    {
+
+                        switch (direction)
+
+                        {
+
+                            case 1:
+
+                                Maze[H + 1, L] = 4;
+                                H += 2;
+
+
+                                break;
+
+                            case 2:
+
+                                Maze[H, L + 1] = 4;
+                                L += 2;
+
+                                break;
+
+                            case 3:
+
+                                Maze[H - 1, L] = 4;
+                                H -= 2;
+
+
+                                break;
+
+                            case 4:
+
+                                Maze[H, L - 1] = 4;
+                                L -= 2;
+
+                                break;
+
+                        }
+                    }
+
+                }
+
+            }
+
+            #endregion
+
+
+            #region Generation étape 4
+
             H = Hauteur / 2;
             L = Largeur / 2;
 
-            for (int Y = H - 1; Y < H +2; Y++)
+            for (int Y = H - 1; Y < H + 2; Y++)
             {
 
-                for (int X = L - 1; X < L +2; X++)
+                for (int X = L - 1; X < L + 2; X++)
                 {
 
                     Maze[Y, X] = 0;

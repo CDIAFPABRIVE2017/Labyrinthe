@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazeDll", "MazeDll\MazeDll.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JEUX_TEST_SORT", "JEUX_TEST_SORT\JEUX_TEST_SORT.csproj", "{5AB81A5D-76F8-42CC-A4DF-5BB8BCDF85C8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Explorateur", "Explorateur\Explorateur\Explorateur.csproj", "{1994B00B-FF11-46ED-8E9D-A4FB9760AD0D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,14 @@ Global
 		{5AB81A5D-76F8-42CC-A4DF-5BB8BCDF85C8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5AB81A5D-76F8-42CC-A4DF-5BB8BCDF85C8}.Release|x86.ActiveCfg = Release|Any CPU
 		{5AB81A5D-76F8-42CC-A4DF-5BB8BCDF85C8}.Release|x86.Build.0 = Release|Any CPU
+		{1994B00B-FF11-46ED-8E9D-A4FB9760AD0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1994B00B-FF11-46ED-8E9D-A4FB9760AD0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1994B00B-FF11-46ED-8E9D-A4FB9760AD0D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1994B00B-FF11-46ED-8E9D-A4FB9760AD0D}.Debug|x86.Build.0 = Debug|Any CPU
+		{1994B00B-FF11-46ED-8E9D-A4FB9760AD0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1994B00B-FF11-46ED-8E9D-A4FB9760AD0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1994B00B-FF11-46ED-8E9D-A4FB9760AD0D}.Release|x86.ActiveCfg = Release|Any CPU
+		{1994B00B-FF11-46ED-8E9D-A4FB9760AD0D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
