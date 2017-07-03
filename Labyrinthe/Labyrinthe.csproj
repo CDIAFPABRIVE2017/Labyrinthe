@@ -66,6 +66,7 @@
     <Compile Include="Loot_Carte.cs" />
     <Compile Include="Loot_Etre.cs" />
     <Compile Include="Loot_Porte.cs" />
+    <Compile Include="Loot_Sort.cs" />
     <Compile Include="Loot_SortChoix.cs" />
     <Compile Include="Loot_SortImmediat.cs" />
     <Compile Include="Loot_ObjetChoix.cs" />

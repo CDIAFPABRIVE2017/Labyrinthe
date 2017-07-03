@@ -5,8 +5,7 @@ using System.Text;
 
 namespace Labyrinthe
 {
-    internal class Loot_SortImmediat : Loot
-        
+    internal class Loot_SortImmediat : Loot_Sort
     {
         Joueur personnage = new Joueur();
         TypeSort _sortImmediat = new TypeSort();

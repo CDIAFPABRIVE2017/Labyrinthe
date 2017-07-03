@@ -16,47 +16,46 @@ namespace Labyrinthe
 		Cle = 7,
 		Pic = 8,
 	}
-    enum TypeSort
-    {
-        SortVitesse = 0,
-        SortForce = 1,
-        SortVision = 2,
-        SortTeleportation=3
-    };
-
-    public class Loot
+	enum TypeSort
 	{
-        public string name;
+		Immediat = 0,
+		Potion = 1,
+		Carte = 2
+	};
+
+	public class Loot
+	{
+		public string name;
 
 
 		internal static LootConstantes constantesLoot = new LootConstantes();
 
 
-        public static bool IsNull(Loot loot)
-        {
-            return (loot == null);
-        }
+		public static bool IsNull(Loot loot)
+		{
+			return (loot == null);
+		}
 
-        public Loot() { }
-        public Loot(string nom):this() { name = nom; }
-    }
+		public Loot() { }
+		public Loot(string nom):this() { name = nom; }
+	}
 
-    
+	
    /* public Loot ChoixLoot()
 	{
 		Effet typeLoot = new Effet();
 =======
-        internal static LootConstantes constantesLoot = new LootConstantes();
+		internal static LootConstantes constantesLoot = new LootConstantes();
 
-        public string name;
-       
-        public static bool IsNull(Loot loot)
-        {
-            return (loot == null);
-        }
+		public string name;
+	   
+		public static bool IsNull(Loot loot)
+		{
+			return (loot == null);
+		}
 
 
-        
+		
 
 		internal Effet Effet
 		{
@@ -69,18 +68,18 @@ namespace Labyrinthe
 			{
 			}
 		}
-        public Loot() { }
-        public Loot(string nom):this() { name = nom; }
-    }
-    /* public Loot ChoixLoot()
-     {
-         Effet typeLoot = new Effet();
+		public Loot() { }
+		public Loot(string nom):this() { name = nom; }
+	}
+	/* public Loot ChoixLoot()
+	 {
+		 Effet typeLoot = new Effet();
 
-         switch (typeLoot)
-     {
-         default:
+		 switch (typeLoot)
+	 {
+		 default:
   break;
-     }
+	 }
  }*/
 
 

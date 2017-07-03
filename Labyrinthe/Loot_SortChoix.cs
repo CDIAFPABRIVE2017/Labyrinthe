@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Labyrinthe
 {
-    internal class Loot_SortChoix : Loot
+    internal class Loot_SortChoix : Loot_Sort
     {
     }
 }
