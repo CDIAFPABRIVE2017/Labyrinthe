@@ -38,7 +38,7 @@ namespace Labyrinthe
             {
                 //Loot_Sort sor=new Loot();
                 //name = sort.NomSor;
-                return (((Loot_Sort)(this[index])).NomSor).ToString();
+                return (((Loot_Sort)(this[index])).NomSort).ToString();
             }
             else
             {

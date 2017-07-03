@@ -89,7 +89,7 @@ namespace Labyrinthe
             }
         }
 
-        public TypeSort TypeSor
+        public TypeSort TypeSort
         {
             get
             {
@@ -99,10 +99,9 @@ namespace Labyrinthe
             {
                 _typeSor = value;
             }
-
         }
 
-        public NomSort NomSor
+        public NomSort NomSort
         {
             get
             {
@@ -113,7 +112,6 @@ namespace Labyrinthe
             {
                 _nomSor = value;
             }
-
         }
         #endregion
 
@@ -127,7 +125,7 @@ namespace Labyrinthe
         {
             Joueur y = x;
 
-            if (this.NomSor == NomSort.Teleportation)
+            if (this.NomSort == NomSort.Teleportation)
             {
                 y.Position = Position;
             }
@@ -147,7 +145,7 @@ namespace Labyrinthe
         {
             Loot_Etre y = x;
 
-            if (this.NomSor == NomSort.Teleportation)
+            if (this.NomSort == NomSort.Teleportation)
             {
                 y.Position = Position;
             }
@@ -181,11 +179,11 @@ namespace Labyrinthe
 
             switch (nomSort)
             {
-                case NomSort.Vitesse: this.Vitesse += RandNombre(1, 10); this.NomSor = nomSort; break;
-                case NomSort.Force: this.Force += RandNombre(1, 10); this.NomSor = nomSort; break;
-                case NomSort.Teleportation: this.Position = po; this.NomSor = nomSort; break;
-                case NomSort.Combine: this.Force -= RandNombre(1, 10); this.Vitesse -= RandNombre(1, 10); this.NomSor = nomSort; break;
-                case NomSort.Vision: this.Vision += RandNombre(1, 3); this.NomSor = nomSort; break;
+                case NomSort.Vitesse: this.Vitesse += RandNombre(1, 10); this.NomSort = nomSort; break;
+                case NomSort.Force: this.Force += RandNombre(1, 10); this.NomSort = nomSort; break;
+                case NomSort.Teleportation: this.Position = po; this.NomSort = nomSort; break;
+                case NomSort.Combine: this.Force -= RandNombre(1, 10); this.Vitesse -= RandNombre(1, 10); this.NomSort = nomSort; break;
+                case NomSort.Vision: this.Vision += RandNombre(1, 3); this.NomSort = nomSort; break;
                 default: break;
             }
             return this;
@@ -206,11 +204,11 @@ namespace Labyrinthe
 
             switch (nomSort)
             {
-                case NomSort.Vitesse: this.Vitesse += val; this.NomSor = nomSort; break;
-                case NomSort.Force: this.Force += val; this.NomSor = nomSort; break;
-                case NomSort.Teleportation: this.Position = po; this.NomSor = nomSort; break;
-                case NomSort.Combine: this.Force -= val; this.Vitesse -= val; this.NomSor = nomSort; break;
-                case NomSort.Vision: this.Vision += val; this.NomSor = nomSort; break;
+                case NomSort.Vitesse: this.Vitesse += val; this.NomSort = nomSort; break;
+                case NomSort.Force: this.Force += val; this.NomSort = nomSort; break;
+                case NomSort.Teleportation: this.Position = po; this.NomSort = nomSort; break;
+                case NomSort.Combine: this.Force -= val; this.Vitesse -= val; this.NomSort = nomSort; break;
+                case NomSort.Vision: this.Vision += val; this.NomSort = nomSort; break;
                 default: break;
             }
             return this;
@@ -232,30 +230,30 @@ namespace Labyrinthe
                     switch (nom)
                     {
                         case NomSort.Force:
-                             Force = constantesLoot.SortForce;
-                            this.NomSor = nom;
-                            this.TypeSor = type;
+                             Force += constantesLoot.SortForce;
+                            this.NomSort = nom;
+                            this.TypeSort = type;
                             break;
                         case NomSort.Vitesse:
-                            Vitesse = constantesLoot.SortVitesse;
-                            this.NomSor = nom;
-                            this.TypeSor = type;
+                            Vitesse += constantesLoot.SortVitesse;
+                            this.NomSort = nom;
+                            this.TypeSort = type;
                             break;
                         case NomSort.Combine:
-                            Force = constantesLoot.SortForce;
-                            Vitesse = constantesLoot.SortVitesse;
-                            this.NomSor = nom;
-                            this.TypeSor = type;
+                            Force += constantesLoot.SortForce;
+                            Vitesse += constantesLoot.SortVitesse;
+                            this.NomSort = nom;
+                            this.TypeSort = type;
                             break;
                         case NomSort.Teleportation:
                             Position = _position;
-                            this.NomSor = nom;
-                            this.TypeSor = type;
+                            this.NomSort = nom;
+                            this.TypeSort = type;
                             break;
                         case NomSort.Vision:
-                            Vision = constantesLoot.SortVision;
-                            this.NomSor = nom;
-                            this.TypeSor = type;
+                            Vision += constantesLoot.SortVision;
+                            this.NomSort = nom;
+                            this.TypeSort = type;
                             break;
                     }
                     break;
@@ -263,28 +261,28 @@ namespace Labyrinthe
                     switch (nom)
                     {
                         case NomSort.Force:
-                            Force = constantesLoot.SortPotionForce;
-                            this.NomSor = nom;
-                            this.TypeSor = type;
+                            Force += constantesLoot.SortPotionForce;
+                            this.NomSort = nom;
+                            this.TypeSort = type;
                             break;
                         case NomSort.Vitesse:
-                            Vitesse = constantesLoot.SortPotionVitesse;
-                            this.NomSor = nom;
-                            this.TypeSor = type;
+                            Vitesse += constantesLoot.SortPotionVitesse;
+                            this.NomSort = nom;
+                            this.TypeSort = type;
                             break;
                         case NomSort.Combine:
-                            Force = constantesLoot.SortPotionForce;
-                            Vitesse = constantesLoot.SortPotionVitesse;
-                            this.NomSor = nom;
-                            this.TypeSor = type;
+                            Force += constantesLoot.SortPotionForce;
+                            Vitesse += constantesLoot.SortPotionVitesse;
+                            this.NomSort = nom;
+                            this.TypeSort = type;
                             break;
                         case NomSort.Teleportation:
                             Position = _position;
                             break;
                         case NomSort.Vision:
-                            Vision = constantesLoot.SortPotionVision;
-                            this.NomSor = nom;
-                            this.TypeSor = type;
+                            Vision += constantesLoot.SortPotionVision;
+                            this.NomSort = nom;
+                            this.TypeSort = type;
                             break;
                     }
                     break;
@@ -292,30 +290,30 @@ namespace Labyrinthe
                     switch (nom)
                     {
                         case NomSort.Force:
-                            Force = constantesLoot.SortCarteForce;
-                            this.NomSor = nom;
-                            this.TypeSor = type;
+                            Force -= constantesLoot.SortCarteForce;
+                            this.NomSort = nom;
+                            this.TypeSort = type;
                             break;
                         case NomSort.Vitesse:
-                            Vitesse = constantesLoot.SortCarteVitesse;
-                            this.NomSor = nom;
-                            this.TypeSor = type;
+                            Vitesse -= constantesLoot.SortCarteVitesse;
+                            this.NomSort = nom;
+                            this.TypeSort = type;
                             break;
                         case NomSort.Combine:
-                            Force = constantesLoot.SortCarteForce;
-                            Vitesse = constantesLoot.SortCarteVitesse;
-                            this.NomSor = nom;
-                            this.TypeSor = type;
+                            Force -= constantesLoot.SortCarteForce;
+                            Vitesse -= constantesLoot.SortCarteVitesse;
+                            this.NomSort = nom;
+                            this.TypeSort = type;
                             break;
                         case NomSort.Teleportation:
                             Position = _position;
-                            this.NomSor = nom;
-                            this.TypeSor = type;
+                            this.NomSort = nom;
+                            this.TypeSort = type;
                             break;
                         case NomSort.Vision:
-                            Vision = constantesLoot.SortCarteVision;
-                            this.NomSor = nom;
-                            this.TypeSor = type;
+                            Vision -= constantesLoot.SortCarteVision;
+                            this.NomSort = nom;
+                            this.TypeSort = type;
                             break;
                     }
                     break;

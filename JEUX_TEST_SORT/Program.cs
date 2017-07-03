@@ -211,7 +211,7 @@ namespace Labyrinthe
             {
                 sor =(Loot_Sort)(list.GetSort(poin));
                 sor.Affect(perso);
-                sortname = sor.NomSor;
+                sortname = sor.NomSort;
             }
         }
 
