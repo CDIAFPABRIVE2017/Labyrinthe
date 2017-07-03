@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Labyrinthe
 {
-    internal class Loot_Porte : Loot
+    public class Loot_Porte : Loot
     {
 
         public bool PorteOuvert(int nombreCle)

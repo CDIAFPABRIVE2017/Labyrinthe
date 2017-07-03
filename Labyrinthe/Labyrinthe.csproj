@@ -64,16 +64,11 @@
     <Compile Include="Inventaire.cs" />
     <Compile Include="Joueur.cs" />
     <Compile Include="Loot.cs" />
-    <Compile Include="Loot_Carte.cs" />
     <Compile Include="Loot_Etre.cs" />
     <Compile Include="Loot_Porte.cs" />
     <Compile Include="Loot_Sort.cs" />
-    <Compile Include="Loot_SortChoix.cs" />
-    <Compile Include="Loot_SortImmediat.cs" />
-    <Compile Include="Loot_ObjetChoix.cs" />
+    <Compile Include="Loot_ObjetPic.cs" />
     <Compile Include="Loot_ObjetCle.cs" />
-    <Compile Include="Loot_SortChoixCarte.cs" />
-    <Compile Include="Loot_SortChoixPotion.cs" />
     <Compile Include="MyLabyrinthe.cs" />
     <Compile Include="Partie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

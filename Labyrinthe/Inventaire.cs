@@ -6,14 +6,14 @@ namespace Labyrinthe
      public class Inventaire: List<Loot>
     {
         //ATTRIBUTS
-        private Inventaire _InvSort;
+        private List<Loot> _InvSort;
 
         //CONSTRUCTEURS
         public Inventaire()
         {; }
 
         //ACCESSEUR
-        internal Inventaire InvSort
+        internal List<Loot> InvSort
         {
             get
             {
@@ -32,11 +32,26 @@ namespace Labyrinthe
             return this[index];
         }
 
-        public string GetNomSort(int index)
+        public string GetNomObjet(int index)
         {
-            return ((this[index]).name).ToString();
+            if ((this[index]).GetType() ==typeof(Loot_Sort))
+            {
+                //Loot_Sort sor=new Loot();
+                //name = sort.NomSor;
+                return (((Loot_Sort)(this[index])).NomSor).ToString();
+            }
+            else
+            {
+                return ((this[index]).name).ToString();
+            }
+            
         }
 
+
+        //public void Add(Loot objet)
+        //{
+        //    this.Add(objet);
+        //}
         public void EnleveSort(int index)
         {
             this.RemoveAt(index);
@@ -46,5 +61,6 @@ namespace Labyrinthe
         {
             return this.Count;
         }
+
     }
 }

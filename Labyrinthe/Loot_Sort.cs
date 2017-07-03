@@ -7,13 +7,21 @@ using System.Windows;
 
 namespace Labyrinthe
 {
+    public enum TypeSort
+    {
+        Immediat = 0,
+        Potion = 1,
+        Carte = 2
+    }
+
     public enum NomSort
     {
         Force = 0,
         Vitesse = 1,
         Combine = 2,
-        Teleportation = 3
-    };
+        Teleportation = 3,
+        Vision = 4
+    }
 
     public class Loot_Sort : Loot
     {
@@ -21,10 +29,13 @@ namespace Labyrinthe
         private int _force = 0;
         private int _vitesse = 0;
         private Point _position;
-        private NomSort _name = new NomSort();
+        private int _vision = 1;
+        private NomSort _nomSor = new NomSort();
+        private TypeSort _typeSor = new TypeSort();
         static Random ale = new Random();
 
         // ACCESSEURS
+        #region ACCESSEURS
         public int Force
         {
             get
@@ -51,18 +62,6 @@ namespace Labyrinthe
             }
         }
 
-        public NomSort Name
-        {
-            get
-            {
-                return _name;
-            }
-
-            set
-            {
-                _name = value;
-            }
-        }
 
         public Point Position
         {
@@ -77,7 +76,49 @@ namespace Labyrinthe
             }
         }
 
+        public int Vision
+        {
+            get
+            {
+                return _vision;
+            }
+
+            set
+            {
+                _vision = value;
+            }
+        }
+
+        public TypeSort TypeSor
+        {
+            get
+            {
+                return _typeSor;
+            }
+            set
+            {
+                _typeSor = value;
+            }
+
+        }
+
+        public NomSort NomSor
+        {
+            get
+            {
+                return _nomSor;
+            }
+
+            set
+            {
+                _nomSor = value;
+            }
+
+        }
+        #endregion
+
         //METHODES
+        #region METHODES
         /// <summary>
         /// Methode qui affect les paramètres d'un sort au personnage en argument avec gestion séparer de la téléportation
         /// </summary>
@@ -86,7 +127,7 @@ namespace Labyrinthe
         {
             Joueur y = x;
 
-            if (this.Name == NomSort.Teleportation)
+            if (this.NomSor == NomSort.Teleportation)
             {
                 y.Position = Position;
             }
@@ -94,6 +135,26 @@ namespace Labyrinthe
             {
                 y.Force += Force;
                 y.Vitesse += Vitesse;
+                y.Vision += Vision;
+            }
+        }
+
+        /// <summary>
+        /// Methode qui affect les paramètres d'un sort au personnage en argument avec gestion séparer de la téléportation
+        /// </summary>
+        /// <param name="x"></param>
+        public void AffectEtre(Loot_Etre x)
+        {
+            Loot_Etre y = x;
+
+            if (this.NomSor == NomSort.Teleportation)
+            {
+                y.Position = Position;
+            }
+            else
+            {
+                y.Force += Force;
+
             }
         }
 
@@ -113,20 +174,21 @@ namespace Labyrinthe
         /// <returns></returns>
         public Loot_Sort CreationSort(NomSort nomSort)
         {
-            Loot_Sort so = new Loot_Sort();
+            //Loot_Sort so = new Loot_Sort();
             Point po = new Point();
             po.X = 0;
             po.Y = 0;
 
             switch (nomSort)
             {
-                case NomSort.Vitesse: so.Vitesse += RandNombre(1, 10); so.Name = nomSort; break;
-                case NomSort.Force: so.Force += RandNombre(1, 10); so.Name = nomSort; break;
-                case NomSort.Teleportation: so.Position = po; so.Name = nomSort; break;
-                case NomSort.Combine: so.Force -= RandNombre(1, 10); so.Vitesse -= RandNombre(1, 10); so.Name = nomSort; break;
+                case NomSort.Vitesse: this.Vitesse += RandNombre(1, 10); this.NomSor = nomSort; break;
+                case NomSort.Force: this.Force += RandNombre(1, 10); this.NomSor = nomSort; break;
+                case NomSort.Teleportation: this.Position = po; this.NomSor = nomSort; break;
+                case NomSort.Combine: this.Force -= RandNombre(1, 10); this.Vitesse -= RandNombre(1, 10); this.NomSor = nomSort; break;
+                case NomSort.Vision: this.Vision += RandNombre(1, 3); this.NomSor = nomSort; break;
                 default: break;
             }
-            return so;
+            return this;
         }
 
         /// <summary>
@@ -137,20 +199,130 @@ namespace Labyrinthe
         /// <returns></returns>
         public Loot_Sort CreationSort(NomSort nomSort, int val)
         {
-            //Sort so = new Sort();
+            //Loot_Sort so = new Loot_Sort();
             Point po = new Point();
             po.X = 0;
             po.Y = 0;
 
             switch (nomSort)
             {
-                case NomSort.Vitesse: this.Vitesse += val; this.Name = nomSort; break;
-                case NomSort.Force: this.Force += val; this.Name = nomSort; break;
-                case NomSort.Teleportation: this.Position = po; this.Name = nomSort; break;
-                case NomSort.Combine: this.Force -= val; this.Vitesse -= val; this.Name = nomSort; break;
+                case NomSort.Vitesse: this.Vitesse += val; this.NomSor = nomSort; break;
+                case NomSort.Force: this.Force += val; this.NomSor = nomSort; break;
+                case NomSort.Teleportation: this.Position = po; this.NomSor = nomSort; break;
+                case NomSort.Combine: this.Force -= val; this.Vitesse -= val; this.NomSor = nomSort; break;
+                case NomSort.Vision: this.Vision += val; this.NomSor = nomSort; break;
                 default: break;
             }
             return this;
+        }
+
+        /// <summary>
+        /// renvoie un sort dont le type et le nom sont définie en argument et dont les valeurs sont issue du fichier des settings
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="nom"></param>
+        /// <returns></returns>
+        public Loot_Sort CreationSort(TypeSort type, NomSort nom)
+        {
+            Loot_Sort sort = new Loot_Sort();
+
+            switch (type)
+            {
+                case TypeSort.Immediat:
+                    switch (nom)
+                    {
+                        case NomSort.Force:
+                             Force = constantesLoot.SortForce;
+                            this.NomSor = nom;
+                            this.TypeSor = type;
+                            break;
+                        case NomSort.Vitesse:
+                            Vitesse = constantesLoot.SortVitesse;
+                            this.NomSor = nom;
+                            this.TypeSor = type;
+                            break;
+                        case NomSort.Combine:
+                            Force = constantesLoot.SortForce;
+                            Vitesse = constantesLoot.SortVitesse;
+                            this.NomSor = nom;
+                            this.TypeSor = type;
+                            break;
+                        case NomSort.Teleportation:
+                            Position = _position;
+                            this.NomSor = nom;
+                            this.TypeSor = type;
+                            break;
+                        case NomSort.Vision:
+                            Vision = constantesLoot.SortVision;
+                            this.NomSor = nom;
+                            this.TypeSor = type;
+                            break;
+                    }
+                    break;
+                case TypeSort.Potion:
+                    switch (nom)
+                    {
+                        case NomSort.Force:
+                            Force = constantesLoot.SortPotionForce;
+                            this.NomSor = nom;
+                            this.TypeSor = type;
+                            break;
+                        case NomSort.Vitesse:
+                            Vitesse = constantesLoot.SortPotionVitesse;
+                            this.NomSor = nom;
+                            this.TypeSor = type;
+                            break;
+                        case NomSort.Combine:
+                            Force = constantesLoot.SortPotionForce;
+                            Vitesse = constantesLoot.SortPotionVitesse;
+                            this.NomSor = nom;
+                            this.TypeSor = type;
+                            break;
+                        case NomSort.Teleportation:
+                            Position = _position;
+                            break;
+                        case NomSort.Vision:
+                            Vision = constantesLoot.SortPotionVision;
+                            this.NomSor = nom;
+                            this.TypeSor = type;
+                            break;
+                    }
+                    break;
+                case TypeSort.Carte:
+                    switch (nom)
+                    {
+                        case NomSort.Force:
+                            Force = constantesLoot.SortCarteForce;
+                            this.NomSor = nom;
+                            this.TypeSor = type;
+                            break;
+                        case NomSort.Vitesse:
+                            Vitesse = constantesLoot.SortCarteVitesse;
+                            this.NomSor = nom;
+                            this.TypeSor = type;
+                            break;
+                        case NomSort.Combine:
+                            Force = constantesLoot.SortCarteForce;
+                            Vitesse = constantesLoot.SortCarteVitesse;
+                            this.NomSor = nom;
+                            this.TypeSor = type;
+                            break;
+                        case NomSort.Teleportation:
+                            Position = _position;
+                            this.NomSor = nom;
+                            this.TypeSor = type;
+                            break;
+                        case NomSort.Vision:
+                            Vision = constantesLoot.SortCarteVision;
+                            this.NomSor = nom;
+                            this.TypeSor = type;
+                            break;
+                    }
+                    break;
+                default:
+                    return null;
+            }
+            return sort;
         }
 
         /// <summary>
@@ -173,5 +345,8 @@ namespace Labyrinthe
         {
             return ale.Next(nbrMin, nbrMax);
         }
+        #endregion
     }
+
+
 }

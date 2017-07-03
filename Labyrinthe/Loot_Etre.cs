@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
 
 namespace Labyrinthe
 {
@@ -17,9 +18,10 @@ namespace Labyrinthe
         Joueur personnage = new Joueur();
         TypeEtre _etre = new TypeEtre();
         int _force = 0;
+        Point _position = new Point();
 
 
-
+        //ACCESSEURS
         public TypeEtre Etre
         {
             get
@@ -46,6 +48,20 @@ namespace Labyrinthe
             }
         }
 
+        public Point Position
+        {
+            get
+            {
+                return _position;
+            }
+
+            set
+            {
+                _position = value;
+            }
+        }
+
+        //METHODES
         public void AttackPersonnage(int valeurforceAttack)
         {
             personnage.Force -= valeurforceAttack;
@@ -63,6 +79,7 @@ namespace Labyrinthe
             }
             return true;
         }
+
         public void DefaultForceEtre(TypeEtre etre)
         {
             switch (etre)

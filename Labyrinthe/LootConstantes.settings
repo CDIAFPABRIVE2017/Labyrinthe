@@ -2,7 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Labyrinthe" GeneratedClassName="LootConstantes">
   <Profiles />
   <Settings>
-    <Setting Name="SortCarteForce" Type="System.Int32" Scope="Application">
+    <Setting Name="SortCarteForce" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">10</Value>
     </Setting>
     <Setting Name="SortCarteVitesse" Type="System.Int32" Scope="User">
@@ -40,6 +40,9 @@
     </Setting>
     <Setting Name="ForceSpectre" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="SortCarteTeleportation" Type="System.Windows.Point" Scope="User">
+      <Value Profile="(Default)">0,0</Value>
     </Setting>
   </Settings>
 </SettingsFile>

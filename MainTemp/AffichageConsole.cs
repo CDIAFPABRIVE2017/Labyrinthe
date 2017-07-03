@@ -26,7 +26,7 @@ namespace MainTemp
                         laby.Liste.TryGetValue((new Point(i, j)).ToString(), out loot);
                         if (!Loot.IsNull(loot))
                         {
-                            switch (loot.name)
+                            switch (loot.Name)
                             {
                                 case "Pilule de force":
                                     Console.Write("FO");
@@ -103,7 +103,7 @@ namespace MainTemp
                         laby.Liste.TryGetValue((new Point(i, j)).ToString(), out loot);
                         if (!Loot.IsNull(loot))
                         {
-                            switch (loot.name)
+                            switch (loot.Name)
                             {
                                 case "Pilule de force":
                                     Console.Write("FO");

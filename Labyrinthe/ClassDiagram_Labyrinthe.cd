@@ -1,91 +1,58 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Labyrinthe.DicoLoot" Collapsed="true">
-    <Position X="0.5" Y="0.5" Width="1.5" />
+  <Class Name="Labyrinthe.DicoLoot">
+    <Position X="2.25" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAAAEAAAAAAAAAAAAAAAAAAAEAIAAAAAAAQA=</HashCode>
       <FileName>DicoLoot.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Labyrinthe.Inventaire" Collapsed="true">
-    <Position X="2.25" Y="0.5" Width="1.5" />
+  <Class Name="Labyrinthe.Inventaire">
+    <Position X="4.75" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AQgAABAAAAAACAAAAAAAAAAAAAAAAAAAAgAAAAAAAQA=</HashCode>
+      <HashCode>AQgAABAAAAAAAAAAAAAAAAAAAAAIAAAAAgAAAAAAAQA=</HashCode>
       <FileName>Inventaire.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Labyrinthe.Joueur" Collapsed="true">
-    <Position X="4" Y="0.5" Width="1.5" />
+  <Class Name="Labyrinthe.Joueur">
+    <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAAqAEAEAACgAAIAAQACBAACAABQECAAkAAIgAA=</HashCode>
       <FileName>Joueur.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Labyrinthe.MyLabyrinthe" Collapsed="true">
-    <Position X="2.25" Y="1.5" Width="1.5" />
+  <Class Name="Labyrinthe.MyLabyrinthe">
+    <Position X="4.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAAAAAAAAFAAAAAAAAAACAACAAAAQAAAIBAAAAA=</HashCode>
       <FileName>MyLabyrinthe.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Labyrinthe.Partie" Collapsed="true">
-    <Position X="4" Y="1.5" Width="1.5" />
+  <Class Name="Labyrinthe.Partie">
+    <Position X="2.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQAAAAAAAAAAAAAEAAAAAAAAAAAAAAGABAAAADAgAAA=</HashCode>
       <FileName>Partie.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Labyrinthe.Loot_SortChoix">
-    <Position X="7.75" Y="5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Loot_SortChoix.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Labyrinthe.Loot_ObjetChoix">
+  <Class Name="Labyrinthe.Loot_ObjetPic">
     <Position X="10" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
-      <FileName>Loot_ObjetChoix.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Loot_ObjetPic.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Labyrinthe.Loot_ObjetCle">
     <Position X="11.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAQCAAAAAAAAAAAA=</HashCode>
       <FileName>Loot_ObjetCle.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Labyrinthe.Loot_SortChoixPotion">
-    <Position X="7.25" Y="7.25" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Properties" Collapsed="true" />
-    </Compartments>
-    <InheritanceLine Type="Labyrinthe.Loot_SortChoix" ManuallyRouted="true">
-      <Path>
-        <Point X="8.5" Y="5.997" />
-        <Point X="8.5" Y="6.12" />
-        <Point X="8.873" Y="6.12" />
-        <Point X="8.873" Y="8.51" />
-        <Point X="8.75" Y="8.51" />
-      </Path>
-    </InheritanceLine>
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAgBAAQAAAAAAAAAAAAAAAAAgIAQAAAAAAAAA=</HashCode>
-      <FileName>Loot_SortChoixPotion.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Labyrinthe.Loot_SortChoixCarte">
-    <Position X="9" Y="7.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAgQAAAAAAAAAAA=</HashCode>
-      <FileName>Loot_SortChoixCarte.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Labyrinthe.Loot_Etre">
     <Position X="13.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAAAAAAAAAAAAAAAQgAAAQAAAAAAAAgAAAAAAAAYQAA=</HashCode>
+      <HashCode>QAAAAAAAAAAAAAAgQgAAAQAAAAAAAAgAAAAAgAAYQAA=</HashCode>
       <FileName>Loot_Etre.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -96,53 +63,56 @@
       <FileName>Loot_Porte.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Labyrinthe.Loot_SortImmediat">
-    <Position X="5.5" Y="5.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAggAAAECCAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
-      <FileName>Loot_SortImmediat.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Labyrinthe.Loot_Carte">
-    <Position X="18" Y="4" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Loot_Carte.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Labyrinthe.Loot">
-    <Position X="8.75" Y="0.5" Width="1.5" />
+    <Position X="9" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAIAAAAIAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AIAAIAAAAIAAAAAAAAAAAAAAAAAEAAAIAAAAAAAAAAA=</HashCode>
       <FileName>Loot.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TypeLoot" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="Labyrinthe.Loot_Sort">
-    <Position X="6.75" Y="3.25" Width="1.5" />
+    <Position X="7" Y="3.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAIAgAAAAAAAAgBAAAAQQCBAAAAACAAAEAkACIAAA=</HashCode>
+      <HashCode>AIACAAgAAAAAAAAgDAACAQACBAAAAACAAAEAsACIgAg=</HashCode>
       <FileName>Loot_Sort.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Enum Name="Labyrinthe.Direction" Collapsed="true">
-    <Position X="0.5" Y="2.75" Width="1.5" />
+    <Position X="7" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAACAACAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
       <FileName>Joueur.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="Labyrinthe.TypeUser" Collapsed="true">
-    <Position X="2.5" Y="2.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAQ=</HashCode>
-      <FileName>MyLabyrinthe.cs</FileName>
-    </TypeIdentifier>
-  </Enum>
   <Enum Name="Labyrinthe.Effet" Collapsed="true">
-    <Position X="6.5" Y="0.5" Width="1.5" />
+    <Position X="11.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAACAAAAAIAAAAACAQAAAIAAAAAIBCAAAAIAAAA=</HashCode>
       <FileName>Loot.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Labyrinthe.TypeLoot">
+    <Position X="11.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAASAAAAAAAAEAAAACAAAAAAAAA=</HashCode>
+      <FileName>Loot.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Labyrinthe.TypeSort">
+    <Position X="10" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Loot_Sort.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Labyrinthe.NomSort">
+    <Position X="10" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAABAAAAAAAAAABAAAIgAA=</HashCode>
+      <FileName>Loot_Sort.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />

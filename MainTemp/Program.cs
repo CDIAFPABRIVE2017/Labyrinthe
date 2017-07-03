@@ -34,7 +34,7 @@ namespace MainTemp
                     joueur.SubirEffet(loot);
                     Console.WriteLine("Loooot !");
                     foreach (Loot item in joueur.Inventaire)
-                        Console.WriteLine(item.name);
+                        Console.WriteLine(item.Name);
                 }
 
             }

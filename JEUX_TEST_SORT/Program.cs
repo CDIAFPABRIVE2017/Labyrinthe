@@ -37,12 +37,21 @@ namespace Labyrinthe
 
         static void Main(string[] args)
         {
+           // Loot cle = Loot;
             Loot_Sort sor = new Loot_Sort();
             sor.CreationSort(NomSort.Force, 20);      //creation de sort
             bob.Inventaire.Add(sor);                  //Ajout dans l'inventaire
             Loot_Sort sor2 = new Loot_Sort();
             sor2.CreationSort(NomSort.Vitesse, 20);
             bob.Inventaire.Add(sor2);
+            Loot_Sort sor3 = new Loot_Sort();
+            sor3.CreationSort(NomSort.Vision, 20);
+            bob.Inventaire.Add(sor3);
+            Loot_ObjetCle cle = new Loot_ObjetCle() { name="cle1"};
+            bob.Inventaire.Add(cle);
+            Loot_Sort sor4 = new Loot_Sort();
+            sor4.CreationSort(TypeSort.Potion,NomSort.Vision);
+            bob.Inventaire.Add(sor4);
             string reponse = string.Empty;
 
             do
@@ -168,7 +177,7 @@ namespace Labyrinthe
                 Console.WriteLine();
                 Console.WriteLine("Personnage:", bob.Force, bob.Vitesse);
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("-Force={0}\n-Vitesse={1}", bob.Force, bob.Vitesse);
+                Console.WriteLine("-Force={0}\n-Vitesse={1}\n-Vision={2}", bob.Force, bob.Vitesse, bob.Vision);
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine();
                 Console.Write("Vous avez subit un sort: ");
@@ -202,7 +211,7 @@ namespace Labyrinthe
             {
                 sor =(Loot_Sort)(list.GetSort(poin));
                 sor.Affect(perso);
-                sortname = sor.Name;
+                sortname = sor.NomSor;
             }
         }
 
@@ -244,7 +253,7 @@ namespace Labyrinthe
             Console.WriteLine();
             Console.WriteLine("Personnage:");
             Console.ForegroundColor = ConsoleColor.Gray;
-            Console.WriteLine("-Force={0}\n-Vitesse={1}", bob.Force, bob.Vitesse);
+            Console.WriteLine("-Force={0}\n-Vitesse={1}\n-Vision={2}", bob.Force, bob.Vitesse,bob.Vision);
             Console.WriteLine();
             try
             {
@@ -253,7 +262,7 @@ namespace Labyrinthe
                     Console.ForegroundColor = ConsoleColor.Green;
                     for (int i = 0; i < bob.Inventaire.QuantiteSort(); i++)
                     {
-                        Console.WriteLine("Le sort en {0} est de type {1}", i, bob.Inventaire.GetNomSort(i));
+                        Console.WriteLine("Le sort en {0} est de type {1}", i, bob.Inventaire.GetNomObjet(i));
 
                     }
                     Console.ForegroundColor = ConsoleColor.White;
@@ -264,7 +273,7 @@ namespace Labyrinthe
 
                     if (repconv < bob.Inventaire.QuantiteSort())
                     {
-                        sorinv = bob.Inventaire.GetSort(repconv);
+                        sorinv = (Loot_Sort)bob.Inventaire.GetSort(repconv);
                         sorinv.Affect(bob);
                         bob.Inventaire.EnleveSort(repconv);
 
@@ -272,7 +281,7 @@ namespace Labyrinthe
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("Personnage nouveau:", bob.Force, bob.Vitesse);
                         Console.ForegroundColor = ConsoleColor.Gray;
-                        Console.WriteLine("-Force={0}\n-Vitesse={1}", bob.Force, bob.Vitesse);
+                        Console.WriteLine("-Force={0}\n-Vitesse={1}\n-Vision={2}", bob.Force, bob.Vitesse, bob.Vision);
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.WriteLine();
                         Console.WriteLine("Tapez sur une touche pour continuer");

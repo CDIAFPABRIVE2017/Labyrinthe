@@ -23,12 +23,15 @@ namespace Labyrinthe {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("10")]
         public int SortCarteForce {
             get {
                 return ((int)(this["SortCarteForce"]));
+            }
+            set {
+                this["SortCarteForce"] = value;
             }
         }
         
@@ -173,6 +176,18 @@ namespace Labyrinthe {
             }
             set {
                 this["ForceSpectre"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0,0")]
+        public global::System.Windows.Point SortCarteTeleportation {
+            get {
+                return ((global::System.Windows.Point)(this["SortCarteTeleportation"]));
+            }
+            set {
+                this["SortCarteTeleportation"] = value;
             }
         }
     }
