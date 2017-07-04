@@ -71,6 +71,8 @@
     <Compile Include="Loot_ObjetCle.cs" />
     <Compile Include="MyLabyrinthe.cs" />
     <Compile Include="Partie.cs" />
+    <Compile Include="PositionJoueur.cs" />
+    <Compile Include="PositionsJoueurs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LootConstantes.Designer.cs">
       <AutoGen>True</AutoGen>
