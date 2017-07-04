@@ -141,7 +141,7 @@ namespace Labyrinthe
         /// Methode qui affect les paramètres d'un sort au personnage en argument avec gestion séparer de la téléportation
         /// </summary>
         /// <param name="x"></param>
-        public void AffectEtre(Loot_Etre x)
+        public void Affect(Loot_Etre x)
         {
             Loot_Etre y = x;
 

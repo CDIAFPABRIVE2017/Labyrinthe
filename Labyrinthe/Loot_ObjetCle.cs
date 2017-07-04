@@ -7,21 +7,21 @@ namespace Labyrinthe
 {
     public class Loot_ObjetCle : Loot
     {
-        private int _puissance = 0;
+        private int _nombreCle = 0;
 
         public Loot_ObjetCle() :base()
             { ;}
 
-        public int Puissance
+        public int MombreCle
         {
             get
             {
-                return _puissance;
+                return _nombreCle;
             }
 
             set
             {
-                _puissance = value;
+                _nombreCle = value;
             }
         }
     }

@@ -7,14 +7,20 @@ namespace Labyrinthe
 {
     public class Loot_Porte : Loot
     {
+        bool _porteOuverte = false;
 
-        public bool PorteOuvert(int nombreCle)
+        public bool PorteOuverte
         {
-            if (nombreCle>=constantesLoot.ClesOuvrePorte)
+            get
             {
-                return true;
+                return _porteOuverte;
             }
-            return false;
+
+            set
+            {
+                _porteOuverte = value;
+            }
         }
+
     }
 }
