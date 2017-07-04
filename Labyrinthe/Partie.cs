@@ -14,7 +14,7 @@ namespace Labyrinthe
 
         public static int hauteur = 51, largeur = 51;
         public Joueur joueur = new Joueur();
-        public static Reseau rezo = new Reseau();
+        public Reseau rezo = new Reseau();
 
 
 
@@ -31,35 +31,30 @@ namespace Labyrinthe
             string[] donnees = ((string)data).Split('/');
 
 
-            switch (donnees[0])
+            if (data.GetType() == typeof(Point))
             {
-                case "RemoveObjet":
-                    RemoveObjet(donnees[1]);
-                    break;
-                case "Labyrinthe":
-                    SendLabyrinthe(sender);
-                    break;
-                case "LabyReponse":
-                    
-                default:
-                    break;
+                if (rezo.IsServer)
+                {
+
+                }
             }
+            else if (data.GetType() == typeof(MyLabyrinthe))
+                SendLabyrinthe(sender);                    
         }
 
         private void SendLabyrinthe(string sender)
         {
-            rezo.SendData(String.Format("LabyReponse/{0}",joueur.Laby.ToString()), sender);
+            rezo.SendData(joueur.Laby, sender);
         }
 
-        private void RemoveObjet(string v)
+        private void RemoveObjet(Point p)
         {
-            string[] adresse = v.Split(';');
-            joueur.Laby.Liste.Remove((new Point(double.Parse(adresse[0]), double.Parse(adresse[1])).ToString()));
+            joueur.Laby.Liste.Remove(p.ToString());
         }
 
         #endregion
 
-        public static MyLabyrinthe ConstructionLabyrinthe()
+        public MyLabyrinthe ConstructionLabyrinthe()
         {
             MyLabyrinthe laby = new Labyrinthe.MyLabyrinthe();
             if (rezo.IsServer)

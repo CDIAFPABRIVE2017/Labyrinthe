@@ -25,15 +25,19 @@ namespace ReseauDLL
 
         public event DataReceive DataReceived;
         private void OnDataReceived(string sender, object data) { if (DataReceived != null) DataReceived(sender, data); }
+        public delegate void FinUDP(bool isserver);
+        public event FinUDP FinRechercheServer;
+        private void OnFinRechercheServer() { if (DataReceived != null) FinRechercheServer(IsServer); }
 
         public Reseau()
         {
             _ipClients = new HashSet<string>();
             _port = 1234;
             _maxPlayer = 4;
+            Initialize();
         }
 
-        public void Initialize()
+        void Initialize()
         {
             _gestionUDP = new GestionUDP(_port);
             _gestionUDP.FinRechercheServer += UDP_FinRechercheServer; ;
@@ -62,6 +66,7 @@ namespace ReseauDLL
                 //Console.WriteLine("pas de serveur détecté : création server");
                 CreationServer(); // Création TCP Listener
             }
+            OnFinRechercheServer();
         }
 
         public void RechercheServer() { _gestionUDP.RechercheServer(); }
