@@ -104,7 +104,7 @@ namespace Labyrinthe
                 rezo.SendData("Labyrinthe");
                 return laby;
             }
-        }
+        } 
 
         public Loot TryRamassageObjet(MyLabyrinthe laby, Point point)
         {

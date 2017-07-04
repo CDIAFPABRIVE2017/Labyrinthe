@@ -10,7 +10,7 @@ namespace Labyrinthe
     public class MyLabyrinthe
     {
         bool[,] _tableau; //Le labyrinthe proprement dit. bool ou int ?
-        DicoLoot _liste;
+        DicoLoot _liste=new DicoLoot();
         internal static Properties.QuantiteLoot quantiteLoot = new Properties.QuantiteLoot();
 
         public void ModifierLabyrinthe(int i, int j, bool val)
@@ -71,9 +71,9 @@ namespace Labyrinthe
 
         public void NouveauxObjets()
         {
-            int nbPilulesVision = Properties.QuantiteLoot.Default.nbPilulesVision;
+            int nbPilulesVision = Properties.QuantiteLoot.Default.nbPotionVision;
             int nbClés = Properties.QuantiteLoot.Default.nbClés;
-            int nbPilulesForce = Properties.QuantiteLoot.Default.nbPilulesForce;
+            int nbPilulesForce = Properties.QuantiteLoot.Default.nbPotionForce;
             int nbCartes = Properties.QuantiteLoot.Default.nbCartes;
 
             for (int i = 0; i < nbPilulesVision; i++)
@@ -106,18 +106,43 @@ namespace Labyrinthe
         public MyLabyrinthe() { _liste = new DicoLoot(); }
 
         /// <summary>
-        /// Rempli le dico de loot spécifiés
+        /// Rempli le dico des loots spécifiés
         /// </summary>
         /// <param name="List"></param>
-        public void CreationListLoot(DicoLoot List)
+        public void CreationListLoot()
         {
+            //ajout cle
             for (int cle = 0; cle < quantiteLoot.nbClés; cle++)
             {
-                List.Add(this.CaseVide(), new Loot_ObjetCle());
+                Liste.Add(this.CaseVide(), new Loot_ObjetCle());
             }
-            InstanciationLootSort(quantiteLoot.nbPilulesVision, TypeSort.Immediat, NomSort.Vision, List);
-            InstanciationLootSort(quantiteLoot.nbPilulesVision, TypeSort.Immediat, NomSort.Vision, List);
-            InstanciationLootSort(quantiteLoot.nbPilulesVision, TypeSort.Potion, NomSort.Force, List);
+            //ajout carte du labyrinthe
+            for (int carte = 0; carte < quantiteLoot.nbCartes; carte++)
+            {
+                Liste.Add(this.CaseVide(), new Loot_Carte());
+            }
+            //ajout pic
+            for (int pic = 0; pic < quantiteLoot.nbPic; pic++)
+            {
+                Liste.Add(this.CaseVide(), new Loot_ObjetPic());
+            }
+            //ajout etre
+            for (int etre = 0; etre < quantiteLoot.nbCartes; etre++)
+            {
+                Liste.Add(this.CaseVide(), new Loot_Etre());
+            }
+            //ajout Sort
+            InstanciationLootSort(quantiteLoot.nbSortTeleportation, TypeSort.Immediat, NomSort.Teleportation, Liste);
+            InstanciationLootSort(quantiteLoot.nbSortVision, TypeSort.Immediat, NomSort.Vision, Liste);
+            InstanciationLootSort(quantiteLoot.nbSortForce, TypeSort.Immediat, NomSort.Force, Liste);
+            //ajout Potion
+            InstanciationLootSort(quantiteLoot.nbPotionForce, TypeSort.Potion, NomSort.Force, Liste);
+            InstanciationLootSort(quantiteLoot.nbPotionForce, TypeSort.Potion, NomSort.Vision, Liste);
+            InstanciationLootSort(quantiteLoot.nbPotionForce, TypeSort.Potion, NomSort.Vitesse, Liste);
+            //ajout carte
+            InstanciationLootSort(quantiteLoot.nbCartes, TypeSort.Carte, (NomSort)Utilitaire.RandNombre(0,50), Liste);
+            //ajout porte
+            Liste.Add(this.CaseVide(), new Loot_Porte());
         }
 
         /// <summary>

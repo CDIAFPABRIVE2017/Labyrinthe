@@ -73,5 +73,10 @@ namespace Labyrinthe
             return this.Count;
         }
 
+        //public void Add(Loot loot)
+        //{
+        //    this.Add(loot);
+        //}
+
     }
 }

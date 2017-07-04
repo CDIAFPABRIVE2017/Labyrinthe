@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Labyrinthe</RootNamespace>
     <AssemblyName>Labyrinthe</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -64,6 +65,7 @@
     <Compile Include="Inventaire.cs" />
     <Compile Include="Joueur.cs" />
     <Compile Include="Loot.cs" />
+    <Compile Include="Loot_Carte.cs" />
     <Compile Include="Loot_Etre.cs" />
     <Compile Include="Loot_Porte.cs" />
     <Compile Include="Loot_Sort.cs" />
@@ -103,7 +105,7 @@
       <Project>{edb2dc8e-d6f3-47cd-8fbd-ac21afb582ba}</Project>
       <Name>MazeDll</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Reseau\Reseau.csproj">
+    <ProjectReference Include="..\Reseau\Reseau\Reseau.csproj">
       <Project>{261b0f2a-85f7-464e-8bef-26c9f111deb4}</Project>
       <Name>Reseau</Name>
     </ProjectReference>

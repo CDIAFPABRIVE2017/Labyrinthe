@@ -22,7 +22,8 @@ namespace Labyrinthe
 		Etre = 1,
 		Cle = 2,
 		Porte = 3,
-		Pic = 4
+		Pic = 4,
+		Carte=5
 	}
 
 	public class Loot

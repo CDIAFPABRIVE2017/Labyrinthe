@@ -15,3 +15,5 @@ D:\CDI\Documents\Labyrinthe\Labyrinthe\bin\Debug\Labyrinthe.pdb
 D:\CDI\Documents\Labyrinthe\Labyrinthe\bin\Debug\MazeDll.dll
 D:\CDI\Documents\Labyrinthe\Labyrinthe\bin\Debug\MazeDll.pdb
 C:\Users\CDI\Source\Repos\Labyrinthe\Labyrinthe\obj\Debug\Labyrinthe.csprojResolveAssemblyReference.cache
+C:\Users\CDI\DepotGITHUB\Labyrinthe\Labyrinthe\bin\Debug\Reseau.dll
+C:\Users\CDI\DepotGITHUB\Labyrinthe\Labyrinthe\bin\Debug\Reseau.pdb

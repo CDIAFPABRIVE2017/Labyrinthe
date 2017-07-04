@@ -84,6 +84,7 @@ namespace Labyrinthe
             }
             return false;
         }
+
         #region get/set
         public Point Position
         {
@@ -156,7 +157,9 @@ namespace Labyrinthe
                 _carte = value;
             }
         }
+
         #endregion
+
         public void ModificationCarte(Point position, int Vision)
         {
             for (int i = 0-Vision; i < 0+Vision+1; i++)
@@ -181,6 +184,61 @@ namespace Labyrinthe
                 Vision++;
             if (loot.name == "Carte")
                 Carte = true;
+        }
+
+        public bool GestionLootLabyrinthe(Loot loot)
+        {
+            if (loot.TypeLoot==TypeLoot.Sort && ((Loot_Sort)loot).TypeSort==TypeSort.Immediat)
+            {
+                ((Loot_Sort)loot).Affect(this);
+                return true;
+            }
+            else if (loot.TypeLoot == TypeLoot.Sort && ((Loot_Sort)loot).TypeSort != TypeSort.Immediat)
+            {
+                this.Inventaire.Add(loot);
+                return true;
+            }
+            else if (loot.TypeLoot==TypeLoot.Cle || loot.TypeLoot == TypeLoot.Pic || loot.TypeLoot == TypeLoot.Carte)
+            {
+                this.Inventaire.Add(loot);
+                return true;
+            }
+            else if (loot.TypeLoot == TypeLoot.Porte)
+            {
+                return false;
+            }
+            else if (loot.TypeLoot == TypeLoot.Etre)
+            {
+                return false;
+            }
+            return false;
+        }
+
+        public void UtilisationLootInventaire(int index)
+        {
+            Loot loot = Inventaire[index];
+            if (loot.TypeLoot == TypeLoot.Sort)
+            {
+                if (((Loot_Sort)loot).TypeSort==TypeSort.Potion)
+                {
+                    ((Loot_Sort)loot).Affect(this);
+                    Inventaire.EnleveLoot(index);
+                }
+                if (((Loot_Sort)loot).TypeSort == TypeSort.Carte)
+                {
+
+                }
+            }
+            else if (loot.TypeLoot == TypeLoot.Pic)
+            {
+                ((Loot_ObjetPic)loot).CasserMur();
+            }
+            else if (loot.TypeLoot == TypeLoot.Carte)
+            {
+              //  AfficheCarte();
+            }
+
+                
         }
     }
 }

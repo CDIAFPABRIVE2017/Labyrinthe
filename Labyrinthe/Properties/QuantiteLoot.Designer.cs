@@ -50,24 +50,144 @@ namespace Labyrinthe.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("10")]
-        public int nbPilulesVision {
+        public int nbPotionVision {
             get {
-                return ((int)(this["nbPilulesVision"]));
+                return ((int)(this["nbPotionVision"]));
             }
             set {
-                this["nbPilulesVision"] = value;
+                this["nbPotionVision"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("20")]
-        public int nbPilulesForce {
+        public int nbPotionForce {
             get {
-                return ((int)(this["nbPilulesForce"]));
+                return ((int)(this["nbPotionForce"]));
             }
             set {
-                this["nbPilulesForce"] = value;
+                this["nbPotionForce"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int nbPotionVitesse {
+            get {
+                return ((int)(this["nbPotionVitesse"]));
+            }
+            set {
+                this["nbPotionVitesse"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int nbSortVision {
+            get {
+                return ((int)(this["nbSortVision"]));
+            }
+            set {
+                this["nbSortVision"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
+        public int nbSortForce {
+            get {
+                return ((int)(this["nbSortForce"]));
+            }
+            set {
+                this["nbSortForce"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int nbSortVitesse {
+            get {
+                return ((int)(this["nbSortVitesse"]));
+            }
+            set {
+                this["nbSortVitesse"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        public int nbSortTeleportation {
+            get {
+                return ((int)(this["nbSortTeleportation"]));
+            }
+            set {
+                this["nbSortTeleportation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        public int nbCarteForce {
+            get {
+                return ((int)(this["nbCarteForce"]));
+            }
+            set {
+                this["nbCarteForce"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        public int nbCarteVitesse {
+            get {
+                return ((int)(this["nbCarteVitesse"]));
+            }
+            set {
+                this["nbCarteVitesse"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        public int nbCarteTeleportation {
+            get {
+                return ((int)(this["nbCarteTeleportation"]));
+            }
+            set {
+                this["nbCarteTeleportation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int nbEtre {
+            get {
+                return ((int)(this["nbEtre"]));
+            }
+            set {
+                this["nbEtre"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        public int nbPic {
+            get {
+                return ((int)(this["nbPic"]));
+            }
+            set {
+                this["nbPic"] = value;
             }
         }
     }

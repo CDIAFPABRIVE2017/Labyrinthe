@@ -8,13 +8,13 @@ namespace Labyrinthe
 {
     public class Loot_ObjetPic : Loot
     {
-        MyLabyrinthe murLabyrinthe = new MyLabyrinthe();
+        MyLabyrinthe murLabyrinthe;
         public void CasserMur()
         {
-            //Joueur j;
+           // Joueur j;
            // if (j.isMur())
            // {
-              //  murLabyrinthe.Tableau;
+           //    murLabyrinthe.Tableau;
            // }
             
         }
