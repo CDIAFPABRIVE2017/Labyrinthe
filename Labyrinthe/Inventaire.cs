@@ -27,17 +27,25 @@ namespace Labyrinthe
         }
 
         //METHODES
+        /// <summary>
+        /// Recupère le loot définie par son index
+        /// </summary>
+        /// <param name="index">index du loot dans l'inventaire</param>
+        /// <returns></returns>
         public Loot GetSort(int index)
         {
             return this[index];
         }
 
+        /// <summary>
+        /// renvoie le nom du loot défini par l'index, issu de l'enum pour les loot sort du champ name pour les autres
+        /// </summary>
+        /// <param name="index">index du loot dans l'inventaire</param>
+        /// <returns></returns>
         public string GetNomObjet(int index)
         {
             if ((this[index]).GetType() ==typeof(Loot_Sort))
             {
-                //Loot_Sort sor=new Loot();
-                //name = sort.NomSor;
                 return (((Loot_Sort)(this[index])).NomSort).ToString();
             }
             else
@@ -46,18 +54,21 @@ namespace Labyrinthe
             }
             
         }
-
-
-        //public void Add(Loot objet)
-        //{
-        //    this.Add(objet);
-        //}
-        public void EnleveSort(int index)
+        
+        /// <summary>
+        /// Enleve de l'inventaire le loot définie par l'index
+        /// </summary>
+        /// <param name="index">index du loot dans l'inventaire</param>
+        public void EnleveLoot(int index)
         {
             this.RemoveAt(index);
         }
 
-        public int QuantiteSort()
+        /// <summary>
+        /// renvoie la quantité de loot contenu dans l'inventaire
+        /// </summary>
+        /// <returns></returns>
+        public int QuantiteLoot()
         {
             return this.Count;
         }

@@ -209,7 +209,7 @@ namespace Labyrinthe
 
             if (list.ContainsKey(poin))
             {
-                sor =(Loot_Sort)(list.GetSort(poin));
+                sor =(Loot_Sort)(list.GetLoot(poin));
                 sor.Affect(perso);
                 sortname = sor.NomSort;
             }
@@ -257,10 +257,10 @@ namespace Labyrinthe
             Console.WriteLine();
             try
             {
-                if (bob.Inventaire.QuantiteSort() != 0)
+                if (bob.Inventaire.QuantiteLoot() != 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
-                    for (int i = 0; i < bob.Inventaire.QuantiteSort(); i++)
+                    for (int i = 0; i < bob.Inventaire.QuantiteLoot(); i++)
                     {
                         Console.WriteLine("Le sort en {0} est de type {1}", i, bob.Inventaire.GetNomObjet(i));
 
@@ -271,11 +271,11 @@ namespace Labyrinthe
                     reponse = Console.ReadLine();
                     repconv = int.Parse(reponse);
 
-                    if (repconv < bob.Inventaire.QuantiteSort())
+                    if (repconv < bob.Inventaire.QuantiteLoot())
                     {
                         sorinv = (Loot_Sort)bob.Inventaire.GetSort(repconv);
                         sorinv.Affect(bob);
-                        bob.Inventaire.EnleveSort(repconv);
+                        bob.Inventaire.EnleveLoot(repconv);
 
                         Console.WriteLine();
                         Console.ForegroundColor = ConsoleColor.Yellow;

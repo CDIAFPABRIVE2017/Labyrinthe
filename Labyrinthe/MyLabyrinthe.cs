@@ -11,6 +11,7 @@ namespace Labyrinthe
     {
         bool[,] _tableau; //Le labyrinthe proprement dit. bool ou int ?
         DicoLoot _liste;
+        internal static Properties.QuantiteLoot quantiteLoot = new Properties.QuantiteLoot();
 
         public void ModifierLabyrinthe(int i, int j, bool val)
         {
@@ -70,10 +71,10 @@ namespace Labyrinthe
 
         public void NouveauxObjets()
         {
-            int nbPilulesVision = Properties.Settings.Default.nbPilulesVision;
-            int nbClés = Properties.Settings.Default.nbClés;
-            int nbPilulesForce = Properties.Settings.Default.nbPilulesForce;
-            int nbCartes = Properties.Settings.Default.nbCartes;
+            int nbPilulesVision = Properties.QuantiteLoot.Default.nbPilulesVision;
+            int nbClés = Properties.QuantiteLoot.Default.nbClés;
+            int nbPilulesForce = Properties.QuantiteLoot.Default.nbPilulesForce;
+            int nbCartes = Properties.QuantiteLoot.Default.nbCartes;
 
             for (int i = 0; i < nbPilulesVision; i++)
                 Liste.Add(CaseVide(), new Loot("Pilule de vision"));
@@ -103,5 +104,36 @@ namespace Labyrinthe
         }
 
         public MyLabyrinthe() { _liste = new DicoLoot(); }
+
+        /// <summary>
+        /// Rempli le dico de loot spécifiés
+        /// </summary>
+        /// <param name="List"></param>
+        public void CreationListLoot(DicoLoot List)
+        {
+            for (int cle = 0; cle < quantiteLoot.nbClés; cle++)
+            {
+                List.Add(this.CaseVide(), new Loot_ObjetCle());
+            }
+            InstanciationLootSort(quantiteLoot.nbPilulesVision, TypeSort.Immediat, NomSort.Vision, List);
+            InstanciationLootSort(quantiteLoot.nbPilulesVision, TypeSort.Immediat, NomSort.Vision, List);
+            InstanciationLootSort(quantiteLoot.nbPilulesVision, TypeSort.Potion, NomSort.Force, List);
+        }
+
+        /// <summary>
+        /// Instancie dans un dico les sort de la quantité déterminé
+        /// </summary>
+        /// <param name="quantite">défini la quantité de loot</param>
+        /// <param name="type">defini le type de sort</param>
+        /// <param name="nom">defini le nom du sort</param>
+        /// <param name="list">defini le dico affecté</param>
+        public void InstanciationLootSort(int quantite, TypeSort type, NomSort nom, DicoLoot list)
+        {
+            for (int i = 0; i < quantite; i++)
+            {
+                Loot_Sort sort = new Loot_Sort();
+                list.Add(this.CaseVide(), sort.CreationSort(type, nom));
+            }
+        }
     }
 }

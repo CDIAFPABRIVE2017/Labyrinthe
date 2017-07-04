@@ -64,7 +64,6 @@ namespace Labyrinthe
 		public static bool IsNull(Loot loot)
 		{
 			return (loot == null);
-		}
-        
+		}		
 	}
 }

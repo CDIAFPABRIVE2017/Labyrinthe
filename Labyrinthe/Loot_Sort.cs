@@ -179,11 +179,11 @@ namespace Labyrinthe
 
             switch (nomSort)
             {
-                case NomSort.Vitesse: this.Vitesse += RandNombre(1, 10); this.NomSort = nomSort; break;
-                case NomSort.Force: this.Force += RandNombre(1, 10); this.NomSort = nomSort; break;
+                case NomSort.Vitesse: this.Vitesse += Utilitaire.RandNombre(1, 10); this.NomSort = nomSort; break;
+                case NomSort.Force: this.Force += Utilitaire.RandNombre(1, 10); this.NomSort = nomSort; break;
                 case NomSort.Teleportation: this.Position = po; this.NomSort = nomSort; break;
-                case NomSort.Combine: this.Force -= RandNombre(1, 10); this.Vitesse -= RandNombre(1, 10); this.NomSort = nomSort; break;
-                case NomSort.Vision: this.Vision += RandNombre(1, 3); this.NomSort = nomSort; break;
+                case NomSort.Combine: this.Force -= Utilitaire.RandNombre(1, 10); this.Vitesse -= Utilitaire.RandNombre(1, 10); this.NomSort = nomSort; break;
+                case NomSort.Vision: this.Vision += Utilitaire.RandNombre(1, 3); this.NomSort = nomSort; break;
                 default: break;
             }
             return this;
@@ -330,18 +330,7 @@ namespace Labyrinthe
         public Loot_Sort CreationSortAleatoire()
         {
             Loot_Sort so = new Loot_Sort();
-            return so.CreationSort((NomSort)(so.RandNombre(0, Loot_Sort.NombreTypeSort())));
-        }
-
-        /// <summary>
-        /// Renvoie un nombre aléatoire défini entre des valeurs mini et maxi
-        /// </summary>
-        /// <param name="nbrMin"></param>
-        /// <param name="nbrMax"></param>
-        /// <returns></returns>
-        private int RandNombre(int nbrMin, int nbrMax)
-        {
-            return ale.Next(nbrMin, nbrMax);
+            return so.CreationSort((NomSort)(Utilitaire.RandNombre(0, Loot_Sort.NombreTypeSort())));
         }
         #endregion
     }

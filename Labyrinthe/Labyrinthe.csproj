@@ -77,11 +77,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>LootConstantes.settings</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
+    <Compile Include="Properties\QuantiteLoot.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
+      <DependentUpon>QuantiteLoot.settings</DependentUpon>
     </Compile>
+    <Compile Include="Utilitaire.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -90,9 +91,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>LootConstantes.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Properties\Settings.settings">
+    <None Include="Properties\QuantiteLoot.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <LastGenOutput>QuantiteLoot.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
