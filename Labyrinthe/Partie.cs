@@ -94,7 +94,7 @@ namespace Labyrinthe
 
                 laby.ConversionMaze(tempMaze);
 
-                laby.NouveauxObjets();
+                laby.CreationListDico();
 
                 return laby;
             }
