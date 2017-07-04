@@ -13,17 +13,10 @@ namespace MainTemp
     class Program
     {
         public static Partie partie = new Partie();
-        public static Joueur joueur = new Joueur();
 
         static void Main(string[] args)
         {
             partie.Lancement();
-            Random rnd = new Random();
-
-            joueur.Laby = partie.laby;
-            joueur.InitialisationCarte();
-            joueur.askPosition();
-
         }
 
         public static void Deplacement(Direction dir)
@@ -36,20 +29,20 @@ namespace MainTemp
                 //SI S>C NON :
                 //RENCONTRE !
                 //SI S>C OUI :
-                joueur.Deplacement(dir);
-                loot = partie.TryRamassageObjet(joueur);
+                partie.joueur.Deplacement(dir);
+                loot = partie.TryRamassageObjet(partie.joueur.Laby, partie.joueur.Position);
                 //C>S J'AI BOUGE ICI
                 //SERVEUR UPDATE LA POSITION ET REGARDE SI OBJET
                 //SI OBJET, LE REMOVE ET S>C ORDONNE DE REMOVE AUX AUTRES JOUEURS
 
 
                 //Mettre l'affichage voulu...
-                AffichageConsole.AffichageStandard(partie.laby, joueur);
+                AffichageConsole.AffichageStandard(partie.joueur.Laby,partie.joueur);
 
                 if (!Loot.IsNull(loot))
                 {
-                    joueur.Inventaire.Add(loot);
-                    joueur.SubirEffet(loot);
+                    partie.joueur.Inventaire.Add(loot);
+                    partie.joueur.SubirEffet(loot);
 
                     //Mode console only
                     Console.WriteLine("Loooot ! {0}", loot.name);

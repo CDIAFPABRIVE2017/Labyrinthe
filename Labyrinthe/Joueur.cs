@@ -19,17 +19,14 @@ namespace Labyrinthe
     }
     public class Joueur
     {
-        Point _position;
+        Point _position = new Point(0,0);
         int _vision = 1;
         decimal _vitesse, _force;
         Inventaire _inventaire /*= new Inventaire()*/;
         bool _carte = false;
-        MyLabyrinthe _tableau = Partie.ConstructionLabyrinthe();
+        MyLabyrinthe _tableau;
 
         MyLabyrinthe _carteLaby;
-
-       // _tableau.Tableau.GetLength(0), _tableau.Tableau.GetLength(1)
-
 
             public Joueur()
         {
@@ -184,13 +181,6 @@ namespace Labyrinthe
                 Vision++;
             if (loot.name == "Carte")
                 Carte = true;
-        }
-
-        public void askPosition()
-        {
-            //pose la question au serveur !
-            Random rnd = new Random();
-            this.Position = new Point(rnd.Next(50), rnd.Next(50));
         }
     }
 }

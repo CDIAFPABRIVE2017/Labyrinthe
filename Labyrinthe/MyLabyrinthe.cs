@@ -11,6 +11,7 @@ namespace Labyrinthe
     {
         bool[,] _tableau; //Le labyrinthe proprement dit. bool ou int ?
         DicoLoot _liste;
+        PositionsJoueurs _joueurs = new PositionsJoueurs();
 
         public void ModifierLabyrinthe(int i, int j, bool val)
         {
@@ -40,6 +41,19 @@ namespace Labyrinthe
             set
             {
                 _liste = value;
+            }
+        }
+
+        public PositionsJoueurs Joueurs
+        {
+            get
+            {
+                return _joueurs;
+            }
+
+            set
+            {
+                _joueurs = value;
             }
         }
 

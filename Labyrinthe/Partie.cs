@@ -20,26 +20,51 @@ namespace Labyrinthe
 
           public void Lancement()
         {
-            rezo.Initialize();
             rezo.DataReceived += Reception;
             joueur.Laby = ConstructionLabyrinthe();
-
+            joueur.InitialisationCarte();
+            askPosition();
         }
         #region Réception et réactions
         private void Reception(string sender, object data)
         {
-            string[] donnees = ((string)data).Split('/');
 
-
+            //Si on reçoit un point
             if (data.GetType() == typeof(Point))
             {
+                //On enlève l'objet à l'endroit correspondant
+                Loot loot = TryRamassageObjet(joueur.Laby, (Point)data);
+                //Et si on est serveur on envoie le point pour que les autres joueurs l'enlèvent, et on envoie la position du joueur pour qu'elle soit actualisée chez les autres
                 if (rezo.IsServer)
                 {
-
+                    if (loot != null)
+                        rezo.SendData((Point)data);
+                    rezo.SendData(new PositionJoueur(sender, (Point)data));
                 }
+
             }
+
             else if (data.GetType() == typeof(MyLabyrinthe))
-                SendLabyrinthe(sender);                    
+                joueur.Laby = (MyLabyrinthe)data;
+
+            else if (data.GetType() == typeof(string))
+            {
+                if ((string)data == "Labyrinthe")
+                    SendLabyrinthe(sender);
+                else if ((string)data == "Position")
+                { }
+            }
+
+            else if (data.GetType() == typeof(PositionJoueur))
+                if (joueur.Position == new Point(0, 0))
+                    joueur.Position = ((PositionJoueur)data).Position;
+                else
+                    UpdatePositions((PositionJoueur)data);
+                    
+        }
+        public void askPosition()
+        {
+            rezo.SendData("Position");
         }
 
         private void SendLabyrinthe(string sender)
@@ -47,11 +72,11 @@ namespace Labyrinthe
             rezo.SendData(joueur.Laby, sender);
         }
 
-        private void RemoveObjet(Point p)
+        private void UpdatePositions(PositionJoueur posJ)
         {
-            joueur.Laby.Liste.Remove(p.ToString());
+            joueur.Laby.Joueurs.Remove(posJ.Position);
+            joueur.Laby.Joueurs.Add(posJ.Position, posJ.Adresse);
         }
-
         #endregion
 
         public MyLabyrinthe ConstructionLabyrinthe()
@@ -79,18 +104,15 @@ namespace Labyrinthe
             }
         }
 
-        public Loot TryRamassageObjet(Joueur joueur)
+        public Loot TryRamassageObjet(MyLabyrinthe laby, Point point)
         {
-                Loot loot;
-                if (joueur.Laby.Liste.TryGetValue(joueur.Position.ToString(), out loot))
-                {
-                    joueur.Laby.Liste.Remove(joueur.Position.ToString());
-                    if (rezo.IsServer)
-                        //Si on est serveur il faut s'occuper soi-même de prévenir les autres. Si on n'est pas serveur, le simple fait de s'être déplacé provoquera le message du serveur.
-                        rezo.SendData(String.Format("RemoveObjet/{0};{1}", joueur.Position.X, joueur.Position.Y));
-                    return loot;
-                }
-                else return null;
+            Loot loot;
+            if (laby.Liste.TryGetValue(point.ToString(), out loot))
+            {
+                laby.Liste.Remove(point.ToString());
+                return loot;
+            }
+            else return null;
         }            
     }
 }
