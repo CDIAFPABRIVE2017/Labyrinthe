@@ -64,55 +64,6 @@ namespace Labyrinthe
 		public static bool IsNull(Loot loot)
 		{
 			return (loot == null);
-		}
-        
+		}		
 	}
-
-
-
-
-	/* public Loot ChoixLoot()
-	 {
-		 Effet typeLoot = new Effet();
- =======
-		 internal static LootConstantes constantesLoot = new LootConstantes();
-
-		 public string name;
-
-		 public static bool IsNull(Loot loot)
-		 {
-			 return (loot == null);
-		 }
-
-
-
-
-		 internal Effet Effet
-		 {
-			 get
-			 {
-				 throw new System.NotImplementedException();
-			 }
-
-			 set
-			 {
-			 }
-		 }
-		 public Loot() { }
-		 public Loot(string nom):this() { name = nom; }
-	 }
-	 /* public Loot ChoixLoot()
-	  {
-		  Effet typeLoot = new Effet();
-
-		  switch (typeLoot)
-	  {
-		  default:
-   break;
-	  }
-  }*/
-
-
-
-
 }
