@@ -60,6 +60,8 @@ namespace Labyrinthe
                     joueur.Position = ((PositionJoueur)data).Position;
                 else
                     UpdatePositions((PositionJoueur)data);
+
+
                     
         }
         public void askPosition()
