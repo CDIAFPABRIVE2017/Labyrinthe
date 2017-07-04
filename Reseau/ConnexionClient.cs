@@ -1,21 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace ReseauDLL
 {
     public delegate void DataReceiveTCP(ConnexionClient sender, object data);
     public class ConnexionClient
     {
-        const int READ_BUFFER_SIZE = 255;
         TcpClient _client;
         string _clientname;
-        private byte[] _readBuffer = new byte[READ_BUFFER_SIZE];
 
         public string Nom
         {
@@ -28,45 +22,30 @@ namespace ReseauDLL
         public ConnexionClient(TcpClient client)
         {
             _client = client;
-
-            //_clientname = _client.Client.LocalEndPoint.ToString().Split(':')[0];
             _clientname = _client.Client.RemoteEndPoint.ToString().Split(':')[0];
-
-            _client.GetStream().BeginRead(_readBuffer, 0, READ_BUFFER_SIZE, new AsyncCallback(Lecture), null);
-            //_client.GetStream().BeginRead(_readBuffer, 0, READ_BUFFER_SIZE, new AsyncCallback(DataReceiveing), _client.GetStream());
+            
+            Thread th = new Thread(Lecture);
+            th.Start(_client);
         }
 
-        private void Lecture(IAsyncResult ar)
+        void Lecture(object clientObj)
         {
-            int DataServer;
-            //object data;
-            string strMessage;
-            try
+            TcpClient client = (TcpClient)clientObj;
+            do
             {
-                lock (_client.GetStream())
+                if (client.GetStream().CanRead)
                 {
-                    DataServer = _client.GetStream().EndRead(ar);
+                    try
+                    {
+                        NetworkStream nstream = client.GetStream();
+                        BinaryFormatter formatter = new BinaryFormatter();
 
-                    /*BinaryFormatter bf = new BinaryFormatter();
-                    data = bf.Deserialize(_client.GetStream());
-                    Console.WriteLine("ConnexionClient : DataReceiveing : {0}", data.ToString());*/
+                        object data = (object)formatter.Deserialize(nstream);
+                        GestionDataFromServer(data);
+                    }
+                    catch (Exception) { }
                 }
-
-                strMessage = Encoding.ASCII.GetString(_readBuffer, 0, DataServer - 1);
-
-                DataReceived(this, strMessage);
-
-                //GestionDataFromServer(data);
-
-                lock (_client.GetStream())
-                {
-                    _client.GetStream().BeginRead(_readBuffer, 0, READ_BUFFER_SIZE, new AsyncCallback(Lecture), null);
-                }
-            }
-            catch (Exception ex)
-            {
-                //Console.WriteLine("ConnexionClient : DataReceiveing : ex : {0}", ex.Message);
-            }
+            } while (true);
         }
         private void GestionDataFromServer(object data)
         {
@@ -77,13 +56,12 @@ namespace ReseauDLL
         {
             lock (_client.GetStream())
             {
-                StreamWriter writer = new StreamWriter(_client.GetStream());
-                writer.Write(data.ToString());
-                // Make sure all data is sent now.
-                writer.Flush();
-
-                /*BinaryFormatter bf = new BinaryFormatter();
-                bf.Serialize(_client.GetStream(), DateTime.Now);*/
+                try
+                {
+                    BinaryFormatter bf = new BinaryFormatter();
+                    bf.Serialize(_client.GetStream(), data);
+                }
+                catch (Exception) { }
             }
         }
     }

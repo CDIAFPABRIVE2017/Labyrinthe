@@ -99,7 +99,29 @@ namespace Labyrinthe
             while ((Tableau[x, y]) || (Liste.TryGetValue((new Point(x, y)).ToString(), out test)));
 
             return (new Point(x, y));
+        }
 
+        public override string ToString()
+        {
+            Loot loot;
+            string retour = "";
+
+            retour += String.Format("{0}\n{1}\n",Tableau.GetLength(0), Tableau.GetLength(1));
+            for (int j = 0; j < Tableau.GetLength(0); j++)
+                for (int i = 0; i < Tableau.GetLength(1); i++)
+                {
+                    retour += String.Format("{0};", (Tableau[i, j]) ? 1 : 0);
+                    retour += "\n";
+                }
+            retour += "\n";
+
+            foreach (string item in Liste.Keys)
+            {
+                Liste.TryGetValue(item, out loot);
+                retour += String.Format("{0};{1}\n", item, loot);
+            }
+
+            return retour; 
         }
 
         public MyLabyrinthe() { _liste = new DicoLoot(); }

@@ -19,13 +19,11 @@ namespace MainTemp
         {
             partie.Lancement();
             Random rnd = new Random();
-            Thread boucle = new Thread(new ThreadStart(BoucleJeu));
 
             joueur.Laby = partie.laby;
             joueur.InitialisationCarte();
             joueur.askPosition();
 
-            boucle.Start();
         }
 
         public static void Deplacement(Direction dir)

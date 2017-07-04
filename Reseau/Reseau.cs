@@ -19,14 +19,12 @@ namespace ReseauDLL
 
         GestionUDP _gestionUDP;
         GestionTCP _gestionTCP;
-        public event DataReceive DataReceived;
 
         public bool IsServer { get { return _ipServer == IPAddress.Loopback.ToString(); } }
+        public List<string> Clients { get { return _gestionTCP.Clients; } }
 
-        public List<string> Clients
-        {
-            get { return _gestionTCP.Clients; }
-        }
+        public event DataReceive DataReceived;
+        private void OnDataReceived(string sender, object data) { if (DataReceived != null) DataReceived(sender, data); }
 
         public Reseau()
         {
@@ -38,58 +36,40 @@ namespace ReseauDLL
         public void Initialize()
         {
             _gestionUDP = new GestionUDP(_port);
-            _gestionUDP.FinRechercheServer += _gestionUDP_FinRechercheServer; ;
+            _gestionUDP.FinRechercheServer += UDP_FinRechercheServer; ;
             _gestionTCP = new GestionTCP(_port);
-            _gestionTCP.DataReceived += _gestionTCP_DataReceived;
+            _gestionTCP.DataReceived += TCP_DataReceived;
             
             RechercheServer();
         }
 
-        private void _gestionTCP_DataReceived(string sender, object data)
+        private void TCP_DataReceived(string sender, object data)
         {
-            Console.WriteLine("Réception data TCP !");
-            // Faire des trucs...
-            if (IsServer)
-            {
-                //_gestionUDP.LoopSendBroadcast = false;
-            }
-
-
-            DataReceived(sender, data);
-
-            
+            //Console.WriteLine("Réception data TCP !");
+            OnDataReceived(sender, data); // Faire des trucs..
         }
 
-        private void _gestionUDP_FinRechercheServer(object sender, RetourUDP_EventArgs e)
+        private void UDP_FinRechercheServer(string ipserver)
         {
-            if (e.IpServer != null) // Il y a déjà un server
+            if (ipserver != null) // Il y a déjà un server
             {
-                Console.WriteLine("server trouvé !");
-                _ipServer = e.IpServer;
-                // Création TCP Client
-                Console.WriteLine("création client TCP !");
-                _gestionTCP.CreationClient(_ipServer);
+                //Console.WriteLine("server trouvé ! création client TCP !");
+                _ipServer = ipserver;
+                _gestionTCP.CreationClient(_ipServer); // Création TCP Client
             }
             else // Pas de server, création server
             {
-                Console.WriteLine("pas de serveur détecté : création server");
-                CreationServer();
-                // Création TCP Listener
-                Console.WriteLine("création server TCP !");
-                //_gestionTCP.CreationServer();
+                //Console.WriteLine("pas de serveur détecté : création server");
+                CreationServer(); // Création TCP Listener
             }
         }
 
-        public void RechercheServer()
-        {
-            _gestionUDP.RechercheServer();
-        }
+        public void RechercheServer() { _gestionUDP.RechercheServer(); }
 
         public void CreationServer()
         {
-            Console.Clear();
-            Console.WriteLine("SERVER !");
-
+            /*Console.Clear();
+            Console.WriteLine("SERVER !");*/
             _ipServer = IPAddress.Loopback.ToString();
             _gestionTCP.CreationServer();
             _gestionUDP.CreationServer();

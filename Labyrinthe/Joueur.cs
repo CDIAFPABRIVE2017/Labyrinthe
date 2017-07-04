@@ -87,7 +87,7 @@ namespace Labyrinthe
             }
             return false;
         }
-
+        #region get/set
         public Point Position
         {
             get { return _position; }
@@ -159,7 +159,7 @@ namespace Labyrinthe
                 _carte = value;
             }
         }
-
+        #endregion
         public void ModificationCarte(Point position, int Vision)
         {
             for (int i = 0-Vision; i < 0+Vision+1; i++)
