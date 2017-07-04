@@ -270,7 +270,6 @@ namespace Explorateur
 
         public void Jeux_KeyDown(object sender, KeyEventArgs e)
         {
-
             if (e.KeyCode == Keys.Up)
             {
                 joueur.isMur(Direction.HAUT);

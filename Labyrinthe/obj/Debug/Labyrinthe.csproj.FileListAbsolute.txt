@@ -1,11 +1,3 @@
-C:\Users\CDI\Source\Repos\Labyrinthe\Labyrinthe\bin\Debug\Labyrinthe.dll.config
-C:\Users\CDI\Source\Repos\Labyrinthe\Labyrinthe\bin\Debug\Labyrinthe.dll
-C:\Users\CDI\Source\Repos\Labyrinthe\Labyrinthe\bin\Debug\Labyrinthe.pdb
-C:\Users\CDI\Source\Repos\Labyrinthe\Labyrinthe\bin\Debug\MazeDll.dll
-C:\Users\CDI\Source\Repos\Labyrinthe\Labyrinthe\bin\Debug\MazeDll.pdb
-C:\Users\CDI\Source\Repos\Labyrinthe\Labyrinthe\obj\Debug\Labyrinthe.csprojResolveAssemblyReference.cache
-C:\Users\CDI\Source\Repos\Labyrinthe\Labyrinthe\obj\Debug\Labyrinthe.dll
-C:\Users\CDI\Source\Repos\Labyrinthe\Labyrinthe\obj\Debug\Labyrinthe.pdb
 C:\Users\CDI\DepotGITHUB\Labyrinthe\Labyrinthe\obj\Debug\Labyrinthe.csprojResolveAssemblyReference.cache
 C:\Users\CDI\DepotGITHUB\Labyrinthe\Labyrinthe\obj\Debug\Labyrinthe.dll
 C:\Users\CDI\DepotGITHUB\Labyrinthe\Labyrinthe\obj\Debug\Labyrinthe.pdb
@@ -14,3 +6,12 @@ C:\Users\CDI\DepotGITHUB\Labyrinthe\Labyrinthe\bin\Debug\Labyrinthe.dll
 C:\Users\CDI\DepotGITHUB\Labyrinthe\Labyrinthe\bin\Debug\Labyrinthe.pdb
 C:\Users\CDI\DepotGITHUB\Labyrinthe\Labyrinthe\bin\Debug\MazeDll.dll
 C:\Users\CDI\DepotGITHUB\Labyrinthe\Labyrinthe\bin\Debug\MazeDll.pdb
+D:\CDI\Documents\Labyrinthe\Labyrinthe\obj\Debug\Labyrinthe.csprojResolveAssemblyReference.cache
+D:\CDI\Documents\Labyrinthe\Labyrinthe\obj\Debug\Labyrinthe.dll
+D:\CDI\Documents\Labyrinthe\Labyrinthe\obj\Debug\Labyrinthe.pdb
+D:\CDI\Documents\Labyrinthe\Labyrinthe\bin\Debug\Labyrinthe.dll.config
+D:\CDI\Documents\Labyrinthe\Labyrinthe\bin\Debug\Labyrinthe.dll
+D:\CDI\Documents\Labyrinthe\Labyrinthe\bin\Debug\Labyrinthe.pdb
+D:\CDI\Documents\Labyrinthe\Labyrinthe\bin\Debug\MazeDll.dll
+D:\CDI\Documents\Labyrinthe\Labyrinthe\bin\Debug\MazeDll.pdb
+C:\Users\CDI\Source\Repos\Labyrinthe\Labyrinthe\obj\Debug\Labyrinthe.csprojResolveAssemblyReference.cache

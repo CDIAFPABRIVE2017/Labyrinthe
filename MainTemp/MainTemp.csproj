@@ -84,6 +84,10 @@
       <Project>{edb2dc8e-d6f3-47cd-8fbd-ac21afb582ba}</Project>
       <Name>MazeDll</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Reseau\Reseau.csproj">
+      <Project>{261b0f2a-85f7-464e-8bef-26c9f111deb4}</Project>
+      <Name>Reseau</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
