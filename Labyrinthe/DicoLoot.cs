@@ -28,18 +28,6 @@ namespace Labyrinthe
             }
         }
 
-        public Loot Loot
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-
-            set
-            {
-            }
-        }
-
         //METHODES
         /// <summary>
         /// Ajout dans le dico d'un loot à la position défini 

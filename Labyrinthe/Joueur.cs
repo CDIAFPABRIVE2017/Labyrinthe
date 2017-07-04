@@ -313,7 +313,6 @@ namespace Labyrinthe
             else if (loot.TypeLoot==TypeLoot.Cle || loot.TypeLoot == TypeLoot.Pic || loot.TypeLoot == TypeLoot.Carte)
             {
                 this.Inventaire.Add(loot);
-                ((Loot_ObjetCle)loot).MombreCle++;
                 return true;
             }
             else if (loot.TypeLoot == TypeLoot.Porte)
@@ -406,5 +405,17 @@ namespace Labyrinthe
         }
 
         #endregion
+
+        public Direction Direction1
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+
+            set
+            {
+            }
+        }
     }
 }
