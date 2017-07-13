@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using MazeDll;
 using ReseauDLL;
+using System.Diagnostics;
 
 namespace Labyrinthe
 {
@@ -14,21 +15,32 @@ namespace Labyrinthe
 
         public static int hauteur = 51, largeur = 51;
         public Joueur joueur = new Joueur();
-        public Reseau rezo = new Reseau();
+        public Reseau rezo;
+        public bool test = true;
 
 
 
-          public void Lancement()
+        public void Lancement()
         {
+            rezo = new Reseau();
             rezo.DataReceived += Reception;
+            rezo.FinRechercheServer += Rezo_FinRechercheServer;
+            while (test) { }
+            Console.WriteLine("Connecté : {0}", rezo.IsServer ? "Serveur" : "Client");
             joueur.Laby = ConstructionLabyrinthe();
             joueur.InitialisationCarte();
             askPosition();
         }
+
+        private void Rezo_FinRechercheServer(bool isserver)
+        {
+            test = false;
+        }
         #region Réception et réactions
         private void Reception(string sender, object data)
         {
-
+            Debug.WriteLine(sender);
+            Debug.WriteLine(data.ToString());
             //Si on reçoit un point
             if (data.GetType() == typeof(Point))
             {
@@ -45,28 +57,91 @@ namespace Labyrinthe
             }
 
             else if (data.GetType() == typeof(MyLabyrinthe))
+            {
                 joueur.Laby = (MyLabyrinthe)data;
+                joueur.InitialisationCarte();
+            }
+
 
             else if (data.GetType() == typeof(string))
             {
                 if ((string)data == "Labyrinthe")
                     SendLabyrinthe(sender);
                 else if ((string)data == "Position")
-                { }
+                {
+                    EnvoiePosition(sender);
+                }
             }
 
             else if (data.GetType() == typeof(PositionJoueur))
                 if (joueur.Position == new Point(0, 0))
+                {
                     joueur.Position = ((PositionJoueur)data).Position;
+                    test = false;
+                }
+
                 else
                     UpdatePositions((PositionJoueur)data);
 
 
-                    
+
+        }
+
+        public void DeplacementJoueur(Direction dir)
+        {
+            joueur.Deplacement(dir);
+            rezo.SendData(joueur.Position);
+        }
+
+        //Ouais c'est moche parce que ça marche que pour le jeu jusqu'à 4, au-delà c'est random.
+        //Mais ça fait que chacun démarre à peu près dans un coin. Ah et si y a pas de place libre, boucle infinie.
+        public void EnvoiePosition(string sender)
+        {
+            Point point;
+            switch (rezo.Clients.Count)
+            {
+                case 1:
+                    do
+                    {
+                        point = joueur.Laby.CaseVide();
+                    } while (point.X >= joueur.Laby.Tableau.GetLength(0) * 3 / 4 && point.Y >= joueur.Laby.Tableau.GetLength(1) * 3 / 4);
+                    break;
+                case 2:
+                    do
+                    {
+                        point = joueur.Laby.CaseVide();
+                    } while (point.X <= joueur.Laby.Tableau.GetLength(0) / 4 && point.Y >= joueur.Laby.Tableau.GetLength(1) * 3 / 4);
+                    break;
+                case 3:
+                    do
+                    {
+                        point = joueur.Laby.CaseVide();
+                    } while (point.X >= joueur.Laby.Tableau.GetLength(0) * 3 / 4 && point.Y <= joueur.Laby.Tableau.GetLength(1) / 4);
+                    break;
+                default:
+                    point = joueur.Laby.CaseVide();
+                    break;
+            }
+            rezo.SendData(new PositionJoueur(sender, point), sender);
         }
         public void askPosition()
         {
-            rezo.SendData("Position");
+            Random rnd = new Random();
+            Point point;
+            if (rezo.IsServer)
+            {
+                do
+                {
+                    point = joueur.Laby.CaseVide();
+                } while (point.X <= joueur.Laby.Tableau.GetLength(0) / 4 && point.Y <= joueur.Laby.Tableau.GetLength(1) / 4);
+                joueur.Position = point;
+            }
+            else
+            {
+                test = true;
+                rezo.SendData("Position");
+                while (test) { }
+            }
         }
 
         private void SendLabyrinthe(string sender)
@@ -87,15 +162,13 @@ namespace Labyrinthe
             if (rezo.IsServer)
             {
                 int[,] tempMaze = new int[hauteur, largeur];
-
                 Maze.InitialiseTableau(tempMaze, hauteur, largeur);
 
                 Maze.GenereCheminPrimaire(tempMaze, hauteur, largeur, 1, 0);
 
                 laby.ConversionMaze(tempMaze);
 
-                laby.CreationListLoot();
-
+                laby.NouveauxObjets();
                 return laby;
             }
             else
@@ -104,7 +177,7 @@ namespace Labyrinthe
                 rezo.SendData("Labyrinthe");
                 return laby;
             }
-        } 
+        }
 
         public Loot TryRamassageObjet(MyLabyrinthe laby, Point point)
         {
@@ -115,6 +188,8 @@ namespace Labyrinthe
                 return loot;
             }
             else return null;
-        }            
+        }
+
+        public Partie() { }
     }
 }

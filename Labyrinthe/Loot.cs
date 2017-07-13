@@ -1,8 +1,4 @@
-﻿using System.Windows;
-using System.Configuration;
-
-
-namespace Labyrinthe
+﻿namespace Labyrinthe
 {
 	enum Effet
 	{
@@ -29,7 +25,7 @@ namespace Labyrinthe
 	public class Loot
 	{
 		private string _name;
-		internal static LootConstantes constantesLoot = new LootConstantes();
+		internal static Properties.LootConstantes constantesLoot = new Properties.LootConstantes();
 
 		//CONSTRUCTEURS
 		public Loot() { }

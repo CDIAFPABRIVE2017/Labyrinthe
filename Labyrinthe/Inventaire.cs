@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Labyrinthe
 {
-     public class Inventaire: List<Loot>
+    public class Inventaire: List<Loot>
     {
         //ATTRIBUTS
         private List<Loot> _InvSort;

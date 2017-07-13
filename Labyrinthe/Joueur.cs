@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 
 
 
@@ -31,7 +26,7 @@ namespace Labyrinthe
         Loot_Etre _etre;
         Joueur _adversaire;
         bool _carte = false;
-        internal static LootConstantes constantesLoot = new LootConstantes();
+        internal static Properties.LootConstantes constantesLoot = new Properties.LootConstantes();
         MyLabyrinthe _tableau;
 
         MyLabyrinthe _carteLaby;
@@ -376,7 +371,7 @@ namespace Labyrinthe
                 return 5;
             }
             //Loot Cle de l'inventaire
-            else if (loot.TypeLoot == TypeLoot.Cle && ((Loot_ObjetCle)loot).MombreCle>= constantesLoot.ClesOuvrePorte  && PortePresent==true )
+            else if (loot.TypeLoot == TypeLoot.Cle /*&& ((Loot_ObjetCle)loot).MombreCle>= constantesLoot.ClesOuvrePorte*/  && PortePresent==true )
             {
                 PorteOuverte = true;
                 return 6;

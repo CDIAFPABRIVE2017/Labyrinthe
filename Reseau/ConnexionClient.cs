@@ -23,7 +23,7 @@ namespace ReseauDLL
         {
             _client = client;
             _clientname = _client.Client.RemoteEndPoint.ToString().Split(':')[0];
-            
+
             Thread th = new Thread(Lecture);
             th.Start(_client);
         }
@@ -33,9 +33,9 @@ namespace ReseauDLL
             TcpClient client = (TcpClient)clientObj;
             do
             {
-                if (client.GetStream().CanRead)
+                try
                 {
-                    try
+                    if (client.GetStream().CanRead)
                     {
                         NetworkStream nstream = client.GetStream();
                         BinaryFormatter formatter = new BinaryFormatter();
@@ -43,7 +43,10 @@ namespace ReseauDLL
                         object data = (object)formatter.Deserialize(nstream);
                         GestionDataFromServer(data);
                     }
-                    catch (Exception) { }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(string.Format("ConnexionClient.Lecture : Exception : {0}", ex.Message));
                 }
             } while (true);
         }
@@ -54,14 +57,17 @@ namespace ReseauDLL
 
         public void SendData(object data)
         {
-            lock (_client.GetStream())
+            try
             {
-                try
+                lock (_client.GetStream())
                 {
                     BinaryFormatter bf = new BinaryFormatter();
                     bf.Serialize(_client.GetStream(), data);
                 }
-                catch (Exception) { }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(string.Format("ConnexionClient.SendData : Exception : {0}", ex.Message));
             }
         }
     }

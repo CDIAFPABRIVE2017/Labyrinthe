@@ -76,7 +76,7 @@
     <Compile Include="PositionJoueur.cs" />
     <Compile Include="PositionsJoueurs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="LootConstantes.Designer.cs">
+    <Compile Include="Properties\LootConstantes.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>LootConstantes.settings</DependentUpon>
@@ -91,7 +91,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="ClassDiagram_Labyrinthe.cd" />
-    <None Include="LootConstantes.settings">
+    <None Include="Properties\LootConstantes.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>LootConstantes.Designer.cs</LastGenOutput>
     </None>

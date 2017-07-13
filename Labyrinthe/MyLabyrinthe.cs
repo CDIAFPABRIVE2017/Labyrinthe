@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Labyrinthe
@@ -10,15 +6,16 @@ namespace Labyrinthe
     public class MyLabyrinthe
     {
         bool[,] _tableau; //Le labyrinthe proprement dit. bool ou int ?
-        DicoLoot _liste=new DicoLoot();
+        DicoLoot _liste /*= new DicoLoot()*/;
         internal static Properties.QuantiteLoot quantiteLoot = new Properties.QuantiteLoot();
         PositionsJoueurs _joueurs = new PositionsJoueurs();
 
         public void ModifierLabyrinthe(int i, int j, bool val)
         {
-            if (i>=0 && j>= 0 && i<Tableau.GetLength(0) && j<Tableau.GetLength(1))
+            if (i >= 0 && j >= 0 && i < Tableau.GetLength(0) && j < Tableau.GetLength(1))
                 _tableau[i, j] = val;
         }
+
         public bool[,] Tableau
         {
             get
@@ -77,7 +74,7 @@ namespace Labyrinthe
                             ModifierLabyrinthe(i, j, false);
                             Point point = new Point(i, j);
                             Loot loot = new Labyrinthe.Loot("random");
-                            Liste.Add(point,loot);
+                            Liste.Add(point, loot);
                             break;
                     }
                 }
@@ -116,6 +113,22 @@ namespace Labyrinthe
             return (new Point(x, y));
 
         }
+        public Point CaseVide(double x1, double y1, double x2, double y2)
+        {
+            Random rnd = new Random();
+            int x = 0, y = 0;
+            if ((x1 > 0 || x2 < Tableau.GetLength(0)) && (y1 > 0 || y2 < Tableau.GetLength(1)))
+            {
+                do
+                {
+                    x = rnd.Next((int)x1, (int)x2);
+                    y = rnd.Next((int)y1, (int)y2);
+                }
+                while ((Tableau[x, y]) || (Liste.ContainsKey(new Point(x, y))));
+            }
+            return (new Point(x, y));
+        }
+
 
         public MyLabyrinthe() { _liste = new DicoLoot(); }
 
@@ -154,9 +167,9 @@ namespace Labyrinthe
             InstanciationLootSort(quantiteLoot.nbPotionForce, TypeSort.Potion, NomSort.Vision, Liste);
             InstanciationLootSort(quantiteLoot.nbPotionForce, TypeSort.Potion, NomSort.Vitesse, Liste);
             //ajout carte
-            InstanciationLootSort(quantiteLoot.nbCartes, TypeSort.Carte, (NomSort)Utilitaire.RandNombre(0,50), Liste);
+            InstanciationLootSort(quantiteLoot.nbCartes, TypeSort.Carte, (NomSort)Utilitaire.RandNombre(0, 50), Liste);
             //ajout porte
-            Liste.Add(this.CaseVide(), new Loot_Porte());
+            Liste.Add(CaseVide(Tableau.GetLength(0) * 0.9, Tableau.GetLength(1) * 0.5, Tableau.GetLength(0), Tableau.GetLength(1) * 0.51), new Loot_Porte());
         }
 
         /// <summary>

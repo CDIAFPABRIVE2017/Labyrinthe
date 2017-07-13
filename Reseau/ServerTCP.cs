@@ -4,9 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace ReseauDLL
 {
@@ -43,7 +41,7 @@ namespace ReseauDLL
             }
             catch (Exception ex)
             {
-                // Console.WriteLine("erreur Ecoute server : " + ex.ToString());
+                System.Diagnostics.Debug.WriteLine(string.Format("ServerTCP.Ecoute : Exception : erreur Ecoute server : {0}", ex.Message));
             }
         }
 
@@ -57,13 +55,13 @@ namespace ReseauDLL
         {
             if (_clients.Contains(clientNom))
             {
-                ReplyToClient(client, "REFUSE"); // avant : new DataTCP(MessageTCP.ECHEC,"REFUSE"),
+                System.Diagnostics.Debug.WriteLine(string.Format("ServerTCP.ConnectClient : Contient déjà le client {0}", clientNom));
             }
             else
             {
+                System.Diagnostics.Debug.WriteLine(string.Format("ServerTCP.ConnectClient : Ne contient pas le client {0}, création client", clientNom));
                 client.Nom = clientNom;
                 _clients.Add(clientNom, client);
-                ReplyToClient(client, "OK"); // avant : new DataTCP(MessageTCP.CONNECT, "ok"), // SendToClients("CHAT|" + client.Nom + " has joined the chat.", client);
             }
         }
 
@@ -87,7 +85,8 @@ namespace ReseauDLL
 
         void DisconnectClient(ConnexionClient client)
         {
-            _clients.Remove(client.Nom); //SendToClients("CHAT|" + client.Nom + " has left the chat.", client);
+            _clients.Remove(client.Nom);
+            System.Diagnostics.Debug.WriteLine(string.Format("ServerTCP.DisconnectClient : déco du client {0}", client.Nom));
         }
 
         void Fermeture()
@@ -97,7 +96,7 @@ namespace ReseauDLL
 
         public void SendDataClients(object data)
         {
-            //Console.WriteLine("SERVER : SendData _clients ; count : {0}", _clients.Count);
+            System.Diagnostics.Debug.WriteLine(string.Format("ServerTCP.SendDataClients : _clients ; count : {0}", _clients.Count));
             foreach (DictionaryEntry entry in _clients)
             {
                 ((ConnexionClient)entry.Value).SendData(data);

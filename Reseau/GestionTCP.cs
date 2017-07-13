@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-//using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net;
-using System.Net.Sockets;
-using System.IO;
-using System.Threading;
+﻿using System.Collections.Generic;
 
 namespace ReseauDLL
 {
@@ -60,10 +52,10 @@ namespace ReseauDLL
             _client.DataReceived += GestionTCPDataReceived;
             if (_client.Connect(ipserver))
             {
-                //Console.WriteLine("Connexion réussie...");
+                System.Diagnostics.Debug.WriteLine(string.Format("GestionTCP.CreationClient : {0} : Connexion réussie...", ipserver));
                 _client.SendData(_client.Nom);
             }
-            //else Console.WriteLine("Echec connexion...");
+            else System.Diagnostics.Debug.WriteLine(string.Format("GestionTCP.CreationClient : {0} : Echec connexion...", ipserver));
         }
         #endregion
 
@@ -74,26 +66,17 @@ namespace ReseauDLL
 
         public void SendData(object data)
         {
-            if (_server != null)
-            {
-                _server.SendDataClients(data);
-            }
+            if (_server != null) _server.SendDataClients(data);
             else
             {
-                if (_client != null)
-                {
-                    _client.SendData(data);
-                }
-                //else Console.WriteLine("Problème... ni client, ni server...");
+                if (_client != null)_client.SendData(data);
+                else System.Diagnostics.Debug.WriteLine("GestionTCP.SendData : Problème... ni client, ni server...");
             }
         }
 
         public void SendData(object data, string ipclient)
         {
-            if (_server != null)
-            {
-                _server.SendDataClient(data, ipclient);
-            }
+            if (_server != null) _server.SendDataClient(data, ipclient);
         }
     }
 }

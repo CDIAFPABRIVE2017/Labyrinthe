@@ -10,6 +10,27 @@ namespace MainTemp
 {
     static class AffichageConsole
     {
+
+        public static void AffichageLoots(MyLabyrinthe laby, Joueur joueur)
+        {
+            foreach (KeyValuePair<string,Loot> item in laby.Liste)
+            {
+                Console.WriteLine("Position : {0}, Objet : {1}", item.Key, item.Value.name);
+            }
+            Console.ReadLine();
+        }
+
+        public static void AffichageTableau(MyLabyrinthe laby, Joueur joueur)
+        {
+            for (int j = 0; j < laby.Tableau.GetLength(0); j++)
+            {
+                for (int i = 0; i < laby.Tableau.GetLength(1); i++)
+                {
+                    Console.Write("{0} ", laby.Tableau[i, j] ? 1 : 0);
+                }
+                Console.WriteLine();
+            }
+        }
         public static void AffichageStandard(MyLabyrinthe laby, Joueur joueur)
         {
             Loot loot;
@@ -26,7 +47,7 @@ namespace MainTemp
                         laby.Liste.TryGetValue((new Point(i, j)).ToString(), out loot);
                         if (!Loot.IsNull(loot))
                         {
-                            switch (loot.Name)
+                            switch (loot.name)
                             {
                                 case "Pilule de force":
                                     Console.Write("FO");
@@ -103,7 +124,7 @@ namespace MainTemp
                         laby.Liste.TryGetValue((new Point(i, j)).ToString(), out loot);
                         if (!Loot.IsNull(loot))
                         {
-                            switch (loot.Name)
+                            switch (loot.name)
                             {
                                 case "Pilule de force":
                                     Console.Write("FO");

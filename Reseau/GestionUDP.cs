@@ -42,14 +42,14 @@ namespace ReseauDLL
 
         void ThreadRechercheServer()
         {
-            //Console.WriteLine("recherche de serveur UDP...");
+            System.Diagnostics.Debug.WriteLine(string.Format("GestionUDP.ThreadRechercheServer : Recherche de serveur UDP..."));
             UdpClient client = new UdpClient(_port);
             client.Client.ReceiveTimeout = _rechercheServerTimeout;
             try
             {
                 IPEndPoint toutLeMonde = new IPEndPoint(IPAddress.Any, _port);
                 client.Receive(ref toutLeMonde);
-                _ipServer = toutLeMonde.Address.ToString();
+                _ipServer = toutLeMonde.Address.ToString().Split(':')[0];
                 OnFinRechercheServer(_ipServer); // On renvoie l'ip du server
             }
             catch (Exception)
@@ -65,9 +65,9 @@ namespace ReseauDLL
 
         void LoopEnvoiBroadcast()
         {
-            //Console.WriteLine("Création du serveur UDP...");
+            System.Diagnostics.Debug.WriteLine(string.Format("GestionUDP.CreationServer : Création du serveur UDP..."));
             UdpClient server = new UdpClient();
-            //Console.WriteLine("dbt envoie broadcast");
+            System.Diagnostics.Debug.WriteLine(string.Format("GestionUDP.CreationServer : début envoie broadcast UDP"));
             do
             {
                 IPEndPoint broadcast = new IPEndPoint(IPAddress.Broadcast, _port);
@@ -75,7 +75,8 @@ namespace ReseauDLL
                 server.Send(data, data.Length, broadcast);
                 Thread.Sleep(_sleepBetweenBroadcast);
             } while (_loopSendBroadcast);
-            //Console.WriteLine("fin envoie broadcast");
+
+            System.Diagnostics.Debug.WriteLine(string.Format("GestionUDP.CreationServer : fin envoie broadcast UDP"));
             OnFinRechercheClients(null);
             server.Close();
         }

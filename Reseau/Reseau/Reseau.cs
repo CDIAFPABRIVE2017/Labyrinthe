@@ -1,95 +1,84 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net;
-using System.Net.Sockets;
-//using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-
 
 namespace ReseauDLL
 {
+    public enum Etat
+    {
+        SERVER, CLIENT
+    };
     public class Reseau
     {
-        HashSet<string> _ipClients;
         string _ipServer;
         int _port;
         int _maxPlayer;
 
         GestionUDP _gestionUDP;
         GestionTCP _gestionTCP;
-        public event DataReceive DataReceived;
 
         public bool IsServer { get { return _ipServer == IPAddress.Loopback.ToString(); } }
+        public List<string> Clients { get { return _gestionTCP.Clients; } }
 
-        public List<string> Clients
-        {
-            get { return _gestionTCP.Clients; }
-        }
+        public event DataReceive DataReceived;
+        private void OnDataReceived(string sender, object data) { if (DataReceived != null) DataReceived(sender, data); }
+        public delegate void FinUDP(bool isserver);
+        public event FinUDP FinRechercheServer;
+        private void OnFinRechercheServer() { if (DataReceived != null) FinRechercheServer(IsServer); }
 
         public Reseau()
         {
-            _ipClients = new HashSet<string>();
             _port = 1234;
             _maxPlayer = 4;
-        }
-
-        public void Initialize()
-        {
-            _gestionUDP = new GestionUDP(_port);
-            _gestionUDP.FinRechercheServer += _gestionUDP_FinRechercheServer; ;
-            _gestionTCP = new GestionTCP(_port);
-            _gestionTCP.DataReceived += _gestionTCP_DataReceived;
-            
+            Initialize();
             RechercheServer();
         }
 
-        private void _gestionTCP_DataReceived(string sender, object data)
+        public Reseau(Etat init)
         {
-            Console.WriteLine("Réception data TCP !");
-            // Faire des trucs...
-            if (IsServer)
+            _port = 1234;
+            _maxPlayer = 4;
+            Initialize();
+            switch (init)
             {
-                //_gestionUDP.LoopSendBroadcast = false;
+                case Etat.SERVER: CreationServer(); break;
+                case Etat.CLIENT: RechercheServer(); break;
             }
-
-
-            DataReceived(sender, data);
-
-            
         }
 
-        private void _gestionUDP_FinRechercheServer(object sender, RetourUDP_EventArgs e)
+        void Initialize()
         {
-            if (e.IpServer != null) // Il y a déjà un server
+            _gestionUDP = new GestionUDP(_port);
+            _gestionUDP.FinRechercheServer += UDP_FinRechercheServer; ;
+            _gestionTCP = new GestionTCP(_port);
+            _gestionTCP.DataReceived += TCP_DataReceived;
+        }
+
+        private void TCP_DataReceived(string sender, object data)
+        {
+            //Console.WriteLine("Réception data TCP !");
+            OnDataReceived(sender, data); // Faire des trucs..
+        }
+
+        private void UDP_FinRechercheServer(string ipserver)
+        {
+            if (ipserver != null) // Il y a déjà un server
             {
-                Console.WriteLine("server trouvé !");
-                _ipServer = e.IpServer;
-                // Création TCP Client
-                Console.WriteLine("création client TCP !");
-                _gestionTCP.CreationClient(_ipServer);
+                System.Diagnostics.Debug.WriteLine(string.Format("Reseau.UDP_FinRechercheServer : {0} : server trouvé  ! création client TCP !", ipserver));
+                _ipServer = ipserver;
+                _gestionTCP.CreationClient(_ipServer); // Création TCP Client
             }
             else // Pas de server, création server
             {
-                Console.WriteLine("pas de serveur détecté : création server");
-                CreationServer();
-                // Création TCP Listener
-                Console.WriteLine("création server TCP !");
-                //_gestionTCP.CreationServer();
+                System.Diagnostics.Debug.WriteLine(string.Format("Reseau.UDP_FinRechercheServer : {0} : server introuvable  ! création server TCP !", ipserver));
+                CreationServer(); // Création TCP Listener
             }
+            OnFinRechercheServer();
         }
 
-        public void RechercheServer()
-        {
-            _gestionUDP.RechercheServer();
-        }
+        public void RechercheServer() { _gestionUDP.RechercheServer(); }
 
         public void CreationServer()
         {
-            Console.Clear();
-            Console.WriteLine("SERVER !");
-
             _ipServer = IPAddress.Loopback.ToString();
             _gestionTCP.CreationServer();
             _gestionUDP.CreationServer();

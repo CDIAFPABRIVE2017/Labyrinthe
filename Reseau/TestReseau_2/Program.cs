@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ReseauDLL;
+﻿using ReseauDLL;
+using System;
 using System.Threading;
 
 namespace TestReseau_2

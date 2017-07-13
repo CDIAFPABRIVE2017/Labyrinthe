@@ -7,46 +7,37 @@ using System.Windows;
 using Labyrinthe;
 using MazeDll;
 using System.Threading;
+using System.Diagnostics;
 
 namespace MainTemp
 {
     class Program
     {
-        public static Partie partie = new Partie();
+        public static Partie partie;
 
         static void Main(string[] args)
         {
+            partie = new Partie();
             partie.Lancement();
-        }
+            Direction dir;
+            AffichageConsole.AffichageLaby(partie.joueur.Laby, partie.joueur);
 
-        public static void Deplacement(Direction dir)
-        {
-            Loot loot;
-
-            if (dir != Direction.AUTRE)
+            while (true)
             {
-                //C>S : JE PEUX BOUGER ?
-                //SI S>C NON :
-                //RENCONTRE !
-                //SI S>C OUI :
-                partie.joueur.Deplacement(dir);
-                loot = partie.TryRamassageObjet(partie.joueur.Laby, partie.joueur.Position);
-                //C>S J'AI BOUGE ICI
-                //SERVEUR UPDATE LA POSITION ET REGARDE SI OBJET
-                //SI OBJET, LE REMOVE ET S>C ORDONNE DE REMOVE AUX AUTRES JOUEURS
-
-
-                //Mettre l'affichage voulu...
-                AffichageConsole.AffichageStandard(partie.joueur.Laby,partie.joueur);
-
-                if (!Loot.IsNull(loot))
+                dir = ChangeCaseListener();
+                if (dir != Direction.AUTRE)
                 {
-                    partie.joueur.Inventaire.Add(loot);
-                    partie.joueur.SubirEffet(loot);
+                    partie.DeplacementJoueur(dir);
+                    Loot loot = partie.TryRamassageObjet(partie.joueur.Laby, partie.joueur.Position);
+                    if (!Loot.IsNull(loot))
+                    {
+                        partie.joueur.SubirEffet(loot);
+                        partie.joueur.Inventaire.Add(loot);
+                    }
 
-                    //Mode console only
-                    Console.WriteLine("Loooot ! {0}", loot.name);
                 }
+
+                AffichageConsole.AffichageDeuxCartes(partie.joueur.Laby, partie.joueur);
             }
         }
 
